@@ -1,2 +1,3 @@
 # BoardGameStatTracker
-Store House for all the moving parts of this project
+
+This Repository is the location where all relevant files will be stored and saved to the cloud
