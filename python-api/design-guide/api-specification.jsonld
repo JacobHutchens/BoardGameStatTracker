@@ -1,0 +1,346 @@
+{
+  "@context": {
+    "@vocab": "https://aalang.org/api-spec#",
+    "schema": "https://schema.org/",
+    "bgt": "https://boardgamestattracker.example.com/api/v1/#"
+  },
+  "@id": "bgt:BoardGameStatTrackerAPI",
+  "@type": "WebAPI",
+  "name": "Board Game Stat Tracker REST API",
+  "description": "The Librarian — REST API for Kotlin app; real-time scoring via separate Elixir WebSocket.",
+  "version": "1.0",
+  "baseUrl": "/v1",
+  "protocol": "https",
+  "contentType": "application/json",
+  "accept": "application/json",
+  "authentication": {
+    "@type": "BearerAuth",
+    "scheme": "Bearer",
+    "header": "Authorization",
+    "tokenType": "JWT",
+    "publisherTokensDistinct": true
+  },
+  "designAssumptions": [
+    "Session limit enforced on create (403); quota in GET /users/me; designers exempt",
+    "Win/loss from per-player boolean stat (e.g. player_won)",
+    "Reference data: GET /scopes, GET /data-types; read-only",
+    "Feed visibility: user default + per-session override; new users default public",
+    "Publisher: separate login and resources; multiple users per publisher",
+    "One endpoint per logical operation where possible"
+  ],
+  "statusCodes": [
+    { "code": 200, "meaning": "OK" },
+    { "code": 201, "meaning": "Created" },
+    { "code": 204, "meaning": "No Content" },
+    { "code": 400, "meaning": "Bad Request (malformed)" },
+    { "code": 401, "meaning": "Unauthorized" },
+    { "code": 403, "meaning": "Forbidden (e.g. session limit)" },
+    { "code": 404, "meaning": "Not Found" },
+    { "code": 409, "meaning": "Conflict (duplicate, join conflict)" },
+    { "code": 422, "meaning": "Unprocessable Entity (validation)" },
+    { "code": "5xx", "meaning": "Server error" }
+  ],
+  "errorShape": {
+    "error": { "code": "string", "message": "string" },
+    "details": []
+  },
+  "resources": [
+    { "@id": "bgt:Auth", "path": "/auth", "operations": ["login", "register", "publisherLogin", "refresh", "forgotPassword", "logout"] },
+    { "@id": "bgt:Scopes", "path": "/scopes", "readOnly": true },
+    { "@id": "bgt:DataTypes", "path": "/data-types", "readOnly": true },
+    { "@id": "bgt:Games", "path": "/games", "memberPath": "/games/{gameId}" },
+    { "@id": "bgt:StatSets", "path": "/games/{gameId}/stat-sets", "memberPath": "/games/{gameId}/stat-sets/{statSetId}" },
+    { "@id": "bgt:Sessions", "path": "/sessions", "memberPath": "/sessions/{sessionId}" },
+    { "@id": "bgt:SessionJoin", "path": "/sessions/join", "action": "join" },
+    { "@id": "bgt:Users", "memberPath": "/users/me", "memberPathOther": "/users/{userId}" },
+    { "@id": "bgt:UserSearch", "path": "/users/search" },
+    { "@id": "bgt:CheckUsername", "path": "/users/check-username" },
+    { "@id": "bgt:Followers", "path": "/users/{userId}/followers" },
+    { "@id": "bgt:Following", "path": "/users/{userId}/following" },
+    { "@id": "bgt:Follow", "path": "/users/{userId}/follow" },
+    { "@id": "bgt:Feed", "path": "/feed" },
+    { "@id": "bgt:UserStats", "paths": ["/users/me/stats", "/users/{userId}/stats", "/games/{gameId}/stats"] },
+    { "@id": "bgt:Export", "path": "/users/me/export" },
+    { "@id": "bgt:Publishers", "memberPath": "/publishers/me" },
+    { "@id": "bgt:PublisherDesigners", "path": "/publishers/me/designers" },
+    { "@id": "bgt:PublisherAnalytics", "path": "/publishers/me/analytics" }
+  ],
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "requestBody": { "emailOrUsername": "string", "password": "string" },
+      "response": { "accessToken": "string", "refreshToken": "string", "expiresIn": "number", "user": { "id": "number", "username": "string", "email": "string", "designer": "boolean" } },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/register",
+      "requestBody": { "username": "string", "email": "string", "password": "string" },
+      "response": "same as login",
+      "statusCodes": [201, 400, 409]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/publisher/login",
+      "requestBody": { "emailOrUsername": "string", "password": "string" },
+      "response": { "accessToken": "string", "refreshToken": "string", "expiresIn": "number", "publisher": { "id": "number", "name": "string" } },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/refresh",
+      "requestBody": { "refreshToken": "string" },
+      "response": { "accessToken": "string", "expiresIn": "number" },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/forgot-password",
+      "requestBody": { "email": "string" },
+      "statusCodes": [200]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/logout",
+      "statusCodes": [204]
+    },
+    {
+      "method": "GET",
+      "path": "/users/check-username",
+      "queryParams": ["username"],
+      "response": { "available": "boolean" },
+      "statusCodes": [200]
+    },
+    {
+      "method": "GET",
+      "path": "/scopes",
+      "response": { "scopes": [{ "id": "number", "scope": "string" }] }
+    },
+    {
+      "method": "GET",
+      "path": "/data-types",
+      "response": { "dataTypes": [{ "id": "number", "dataType": "string" }] }
+    },
+    {
+      "method": "GET",
+      "path": "/games",
+      "queryParams": ["filter", "search", "page", "limit"],
+      "response": { "games": [], "total": "number", "page": "number" },
+      "statusCodes": [200]
+    },
+    {
+      "method": "GET",
+      "path": "/games/{gameId}",
+      "response": "Game with statSets summary and my stats",
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "POST",
+      "path": "/games",
+      "requestBody": { "gameName": "string", "description": "string", "minPlayerCount": "number", "maxPlayerCount": "number", "canWin": "boolean" },
+      "response": "Game",
+      "statusCodes": [201, 400, 409]
+    },
+    {
+      "method": "GET",
+      "path": "/games/{gameId}/stat-sets",
+      "response": { "statSets": [] },
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "GET",
+      "path": "/games/{gameId}/stat-sets/{statSetId}",
+      "response": "StatSet",
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "POST",
+      "path": "/games/{gameId}/stat-sets",
+      "requestBody": { "setName": "string", "stats": "optional array", "sourceStatSetId": "optional number for copy" },
+      "response": "StatSet",
+      "statusCodes": [201, 400, 404, 422]
+    },
+    {
+      "method": "GET",
+      "path": "/sessions",
+      "queryParams": ["active", "from", "to", "gameId", "page", "limit"],
+      "response": { "sessions": [], "total": "number", "page": "number" },
+      "statusCodes": [200]
+    },
+    {
+      "method": "GET",
+      "path": "/sessions/{sessionId}",
+      "response": "Session with game, statSet, players, trackedStats, visibility, won per player",
+      "statusCodes": [200, 403, 404]
+    },
+    {
+      "method": "POST",
+      "path": "/sessions",
+      "requestBody": { "gameId": "number", "statSetId": "number", "invitedUserIds": [], "nonAppPlayerNames": [] },
+      "response": { "sessionId": "number", "sessionKey": "string" },
+      "statusCodes": [201, 403, 404, 409, 422]
+    },
+    {
+      "method": "PATCH",
+      "path": "/sessions/{sessionId}",
+      "requestBody": { "timeEnded": "string", "visibilityOverride": "string", "status": "string e.g. ended" },
+      "response": "Session",
+      "statusCodes": [200, 403, 404, 422]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sessions/{sessionId}",
+      "statusCodes": [204, 403, 404]
+    },
+    {
+      "method": "POST",
+      "path": "/sessions/join",
+      "requestBody": { "sessionKey": "string" },
+      "response": "Session",
+      "idempotent": true,
+      "statusCodes": [200, 404, 409]
+    },
+    {
+      "method": "GET",
+      "path": "/users/me",
+      "response": "User with sessionQuota, optional quickStats",
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "PATCH",
+      "path": "/users/me",
+      "requestBody": { "username": "string", "email": "string", "bio": "string", "avatarUrl": "string" },
+      "response": "User",
+      "statusCodes": [200, 400, 401, 409, 422]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{userId}",
+      "response": "User (public fields)",
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "GET",
+      "path": "/users/me/stats",
+      "response": "per-game stats (played, wins)",
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{userId}/stats",
+      "response": "user stats",
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "GET",
+      "path": "/games/{gameId}/stats",
+      "response": "current user stats for game",
+      "statusCodes": [200, 401, 404]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{userId}/followers",
+      "queryParams": ["page", "limit", "search"],
+      "response": { "followers": [], "total": "number", "page": "number" },
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{userId}/following",
+      "queryParams": ["page", "limit", "search"],
+      "response": { "following": [], "total": "number", "page": "number" },
+      "statusCodes": [200, 404]
+    },
+    {
+      "method": "POST",
+      "path": "/users/{userId}/follow",
+      "idempotent": true,
+      "statusCodes": [200, 204, 404]
+    },
+    {
+      "method": "DELETE",
+      "path": "/users/{userId}/follow",
+      "statusCodes": [204, 404]
+    },
+    {
+      "method": "GET",
+      "path": "/users/search",
+      "queryParams": ["q", "page", "limit"],
+      "response": { "users": [], "total": "number", "page": "number" },
+      "statusCodes": [200]
+    },
+    {
+      "method": "GET",
+      "path": "/feed",
+      "queryParams": ["page", "limit", "since"],
+      "response": { "sessions": [], "total": "number", "page": "number" },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "GET",
+      "path": "/users/me/export",
+      "queryParams": ["gameIds", "from", "to", "sessionIds", "statSetIds", "preview"],
+      "response": "preview object or export stream",
+      "statusCodes": [200, 401, 422]
+    },
+    {
+      "method": "POST",
+      "path": "/users/me/export",
+      "requestBody": { "gameIds": [], "from": "string", "to": "string", "sessionIds": [], "statSetIds": [], "preview": "boolean" },
+      "response": "preview object or export stream",
+      "statusCodes": [200, 401, 422]
+    },
+    {
+      "method": "GET",
+      "path": "/publishers/me",
+      "response": { "id": "number", "name": "string", "designerTagCount": "number", "assignedCount": "number" },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "GET",
+      "path": "/publishers/me/designers",
+      "queryParams": ["page", "limit"],
+      "response": { "designers": [], "total": "number", "page": "number" },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "GET",
+      "path": "/publishers/me/analytics",
+      "queryParams": ["from", "to"],
+      "response": "aggregates",
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "POST",
+      "path": "/publishers/me/designers",
+      "requestBody": { "userId": "number" },
+      "statusCodes": [201, 204, 400, 401, 404, 409]
+    },
+    {
+      "method": "DELETE",
+      "path": "/publishers/me/designers/{userId}",
+      "statusCodes": [204, 401, 404]
+    }
+  ],
+  "dataShapes": {
+    "Game": { "id": "number", "gameName": "string", "description": "string", "minPlayerCount": "number", "maxPlayerCount": "number", "canWin": "boolean", "createdAt": "string", "playCount": "number?", "lastPlayedAt": "string?" },
+    "StatSet": { "id": "number", "gameId": "number", "setName": "string", "userId": "number", "stats": [{ "id": "number", "statName": "string", "description": "string", "dataTypeId": "number", "scopeId": "number" }] },
+    "Session": { "id": "number", "sessionKey": "string", "gameId": "number", "game": "object", "statSetId": "number", "statSet": "object", "timeStarted": "string", "timeEnded": "string?", "currentRound": "number?", "visibility": "string", "players": [], "trackedStats": [] },
+    "UserMe": { "id": "number", "username": "string", "email": "string", "bio": "string?", "avatarUrl": "string?", "designer": "boolean", "sessionQuota": { "sessionsUsedThisWeek": "number", "sessionsLimitPerWeek": "number?" }, "defaultSessionVisibility": "string", "quickStats": "object?" },
+    "UserPublic": { "id": "number", "username": "string", "avatarUrl": "string?", "bio": "string?", "designer": "boolean", "statsSummary": "object?" }
+  },
+  "security": {
+    "https": true,
+    "cors": "configure for Kotlin and web",
+    "rateLimiting": "recommended for auth and export",
+    "noPasswordsInResponses": true,
+    "contentNegotiation": "Accept: application/json; Content-Type: application/json; charset=utf-8"
+  },
+  "growability": {
+    "versioning": "URL prefix e.g. /v1/",
+    "extensibility": "optional fields; clients ignore unknown",
+    "backwardCompatibility": "add optional only; no remove or semantic change in same major",
+    "pagination": "page/limit or cursor/limit consistently"
+  }
+}
