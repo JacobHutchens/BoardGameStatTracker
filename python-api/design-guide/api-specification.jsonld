@@ -52,6 +52,7 @@
     { "@id": "bgt:StatSets", "path": "/games/{gameId}/stat-sets", "memberPath": "/games/{gameId}/stat-sets/{statSetId}" },
     { "@id": "bgt:Sessions", "path": "/sessions", "memberPath": "/sessions/{sessionId}" },
     { "@id": "bgt:SessionJoin", "path": "/sessions/join", "action": "join" },
+    { "@id": "bgt:SessionInvites", "path": "/sessions/invites" },
     { "@id": "bgt:Users", "memberPath": "/users/me", "memberPathOther": "/users/{userId}" },
     { "@id": "bgt:UserSearch", "path": "/users/search" },
     { "@id": "bgt:CheckUsername", "path": "/users/check-username" },
@@ -203,6 +204,13 @@
     },
     {
       "method": "GET",
+      "path": "/sessions/invites",
+      "queryParams": ["pending", "page", "limit"],
+      "response": { "invites": [], "total": "number", "page": "number" },
+      "statusCodes": [200, 401]
+    },
+    {
+      "method": "GET",
       "path": "/users/me",
       "response": "User with sessionQuota, optional quickStats",
       "statusCodes": [200, 401]
@@ -327,6 +335,7 @@
     "Game": { "id": "number", "gameName": "string", "description": "string", "minPlayerCount": "number", "maxPlayerCount": "number", "canWin": "boolean", "createdAt": "string", "playCount": "number?", "lastPlayedAt": "string?" },
     "StatSet": { "id": "number", "gameId": "number", "setName": "string", "userId": "number", "stats": [{ "id": "number", "statName": "string", "description": "string", "dataTypeId": "number", "scopeId": "number" }] },
     "Session": { "id": "number", "sessionKey": "string", "gameId": "number", "game": "object", "statSetId": "number", "statSet": "object", "timeStarted": "string", "timeEnded": "string?", "currentRound": "number?", "visibility": "string", "players": [], "trackedStats": [] },
+    "SessionInvite": { "id": "number", "sessionId": "number", "invitedAt": "string", "session": "object" },
     "UserMe": { "id": "number", "username": "string", "email": "string", "bio": "string?", "avatarUrl": "string?", "designer": "boolean", "sessionQuota": { "sessionsUsedThisWeek": "number", "sessionsLimitPerWeek": "number?" }, "defaultSessionVisibility": "string", "quickStats": "object?" },
     "UserPublic": { "id": "number", "username": "string", "avatarUrl": "string?", "bio": "string?", "designer": "boolean", "statsSummary": "object?" }
   },

@@ -90,10 +90,12 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 | PATCH | `/sessions/{sessionId}` | End session / update | Body: e.g. `{ "timeEnded", "visibilityOverride" }` or `{ "status": "ended" }` | 200 + session | 200, 403, 404, 422 |
 | DELETE | `/sessions/{sessionId}` | Delete session | — | — | 204, 403, 404 |
 | POST | `/sessions/join` | Join by session key | Body: `{ "sessionKey" }` | 200 + session (id, key, game, etc.) | 200, 404, 409 |
+| GET | `/sessions/invites` | List session invites for current user | Query: `pending=true|false`, `page`, `limit` | `{ "invites": [...], "total", "page" }` | 200, 401 |
 
 - **Session list:** Use `active=true` for active sessions (e.g. Live Sessions list); `active=false` for history. Same endpoint.
 - **403 on POST /sessions:** User at weekly session limit (designers exempt).
 - **Join:** Idempotent — if caller already in session, return 200 with current session. 404 = session not found; 409 = full, already ended, or other conflict.
+- **Session invites:** Returns invites where current user is the invitee. `pending=true` (default) filters to invites for active sessions where user hasn't joined yet; `pending=false` returns all invites (including for ended sessions or already joined). Each invite includes: `{ "id", "sessionId", "invitedAt", "session": { ... } }` with session details (game, creator, timeStarted, etc.).
 - **Session quota** is included in `GET /users/me` as `sessionQuota: { "sessionsUsedThisWeek", "sessionsLimitPerWeek" }` (designers: limit null or unlimited sentinel). Optional: `GET /users/me/session-quota` for lightweight polling.
 
 ---
@@ -178,6 +180,7 @@ Requires publisher authentication. Multiple user accounts can be linked to one p
 - **Game:** `id`, `gameName`, `description`, `minPlayerCount`, `maxPlayerCount`, `canWin`, `createdAt`. Optional in context: `playCount`, `lastPlayedAt`.
 - **Stat set:** `id`, `gameId`, `setName`, `userId` (creator), `stats`: array of `{ id, statName, description, dataTypeId, scopeId }`.
 - **Session:** `id`, `sessionKey`, `gameId`, `game` (summary), `statSetId`, `statSet` (summary), `timeStarted`, `timeEnded`, `currentRound`, `visibility`, `players`: array of `{ sessionPlayerId, userId, playerName, isSpectator, won }`, `trackedStats`, optional stat values.
+- **Session invite:** `id`, `sessionId`, `invitedAt`, `session` (summary with game, creator, timeStarted, etc.).
 - **User (me):** `id`, `username`, `email`, `bio`, `avatarUrl`, `designer`, `sessionQuota`, `defaultSessionVisibility`; optional `quickStats`.
 - **User (public):** `id`, `username`, `avatarUrl`, `bio`, `designer`, optional stats summary.
 - **Error body:** `{ "error": { "code", "message" }, "details": [] }`.
