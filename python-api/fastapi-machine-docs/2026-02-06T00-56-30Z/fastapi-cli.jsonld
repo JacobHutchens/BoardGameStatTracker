@@ -1,0 +1,46 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-cli",
+  "@type": "Document",
+  "modulePath": "fastapi.cli",
+  "outputFilename": "fastapi-cli.jsonld",
+  "internal": false,
+  "role": "cli",
+  "description": "FastAPI module: fastapi.cli",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.cli/main",
+      "name": "main",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "cli_main",
+      "sourceModule": "fastapi_cli.cli",
+      "sourceSymbol": "main"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi_cli.cli",
+      "symbols": [
+        "cli_main"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.cli/main",
+      "name": "main",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

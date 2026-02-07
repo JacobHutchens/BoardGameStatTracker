@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-dependencies-models",
+  "@type": "Document",
+  "modulePath": "fastapi.dependencies.models",
+  "outputFilename": "fastapi-dependencies-models.jsonld",
+  "internal": false,
+  "role": "models",
+  "description": "FastAPI module: fastapi.dependencies.models",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.dependencies.models/Dependant",
+      "name": "Dependant",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "ModelField",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "ModelField"
+    },
+    {
+      "name": "SecurityBase",
+      "sourceModule": "fastapi.security.base",
+      "sourceSymbol": "SecurityBase"
+    },
+    {
+      "name": "DependencyCacheKey",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "DependencyCacheKey"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "ModelField"
+      ]
+    },
+    {
+      "module": "fastapi.security.base",
+      "symbols": [
+        "SecurityBase"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "DependencyCacheKey"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.dependencies.models/Dependant",
+      "name": "Dependant",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.dependencies.models/_unwrapped_call",
+      "name": "_unwrapped_call",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.models/_impartial",
+      "name": "_impartial",
+      "docstring": "",
+      "internal": true
+    }
+  ]
+}

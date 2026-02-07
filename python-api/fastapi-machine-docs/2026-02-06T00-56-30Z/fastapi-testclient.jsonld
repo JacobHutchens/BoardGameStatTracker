@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-testclient",
+  "@type": "Document",
+  "modulePath": "fastapi.testclient",
+  "outputFilename": "fastapi-testclient.jsonld",
+  "internal": false,
+  "role": "testclient",
+  "description": "FastAPI module: fastapi.testclient",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

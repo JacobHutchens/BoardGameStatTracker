@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-middleware-gzip",
+  "@type": "Document",
+  "modulePath": "fastapi.middleware.gzip",
+  "outputFilename": "fastapi-middleware-gzip.jsonld",
+  "internal": false,
+  "role": "gzip",
+  "description": "FastAPI module: fastapi.middleware.gzip",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

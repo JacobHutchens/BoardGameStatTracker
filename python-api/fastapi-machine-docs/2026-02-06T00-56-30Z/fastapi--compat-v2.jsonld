@@ -1,0 +1,396 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi--compat-v2",
+  "@type": "Document",
+  "modulePath": "fastapi._compat.v2",
+  "outputFilename": "fastapi--compat-v2.jsonld",
+  "internal": true,
+  "role": "v2",
+  "description": "FastAPI module: fastapi._compat.v2",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi._compat.v2/BaseConfig",
+      "name": "BaseConfig",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi._compat.v2/ErrorWrapper",
+      "name": "ErrorWrapper",
+      "bases": [
+        "Exception"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi._compat.v2/ModelField",
+      "name": "ModelField",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/asdict",
+      "name": "asdict",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_schema_from_model_field",
+      "name": "get_schema_from_model_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_definitions",
+      "name": "get_definitions",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_scalar_field",
+      "name": "is_scalar_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_sequence_field",
+      "name": "is_sequence_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_scalar_sequence_field",
+      "name": "is_scalar_sequence_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_bytes_field",
+      "name": "is_bytes_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_bytes_sequence_field",
+      "name": "is_bytes_sequence_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/copy_field_info",
+      "name": "copy_field_info",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/serialize_sequence_value",
+      "name": "serialize_sequence_value",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_missing_field_error",
+      "name": "get_missing_field_error",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/create_body_model",
+      "name": "create_body_model",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_model_fields",
+      "name": "get_model_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_cached_model_fields",
+      "name": "get_cached_model_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/normalize_name",
+      "name": "normalize_name",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_model_name_map",
+      "name": "get_model_name_map",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_compat_model_name_map",
+      "name": "get_compat_model_name_map",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_model",
+      "name": "get_flat_models_from_model",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_annotation",
+      "name": "get_flat_models_from_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_field",
+      "name": "get_flat_models_from_field",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "shared",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "shared"
+    },
+    {
+      "name": "REF_TEMPLATE",
+      "sourceModule": "fastapi.openapi.constants",
+      "sourceSymbol": "REF_TEMPLATE"
+    },
+    {
+      "name": "IncEx",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "IncEx"
+    },
+    {
+      "name": "ModelNameMap",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "ModelNameMap"
+    },
+    {
+      "name": "UnionType",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "UnionType"
+    },
+    {
+      "name": "params",
+      "sourceModule": "fastapi",
+      "sourceSymbol": "params"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "shared"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.constants",
+      "symbols": [
+        "REF_TEMPLATE"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "IncEx",
+        "ModelNameMap",
+        "UnionType"
+      ]
+    },
+    {
+      "module": "fastapi",
+      "symbols": [
+        "params"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi._compat.v2/BaseConfig",
+      "name": "BaseConfig",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi._compat.v2/ErrorWrapper",
+      "name": "ErrorWrapper",
+      "bases": [
+        "Exception"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi._compat.v2/ModelField",
+      "name": "ModelField",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/asdict",
+      "name": "asdict",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/_has_computed_fields",
+      "name": "_has_computed_fields",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_schema_from_model_field",
+      "name": "get_schema_from_model_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_definitions",
+      "name": "get_definitions",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/_replace_refs",
+      "name": "_replace_refs",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/_remap_definitions_and_field_mappings",
+      "name": "_remap_definitions_and_field_mappings",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_scalar_field",
+      "name": "is_scalar_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_sequence_field",
+      "name": "is_sequence_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_scalar_sequence_field",
+      "name": "is_scalar_sequence_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_bytes_field",
+      "name": "is_bytes_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/is_bytes_sequence_field",
+      "name": "is_bytes_sequence_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/copy_field_info",
+      "name": "copy_field_info",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/serialize_sequence_value",
+      "name": "serialize_sequence_value",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_missing_field_error",
+      "name": "get_missing_field_error",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/create_body_model",
+      "name": "create_body_model",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_model_fields",
+      "name": "get_model_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_cached_model_fields",
+      "name": "get_cached_model_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/normalize_name",
+      "name": "normalize_name",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_model_name_map",
+      "name": "get_model_name_map",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_compat_model_name_map",
+      "name": "get_compat_model_name_map",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_model",
+      "name": "get_flat_models_from_model",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_annotation",
+      "name": "get_flat_models_from_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_field",
+      "name": "get_flat_models_from_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/get_flat_models_from_fields",
+      "name": "get_flat_models_from_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.v2/_regenerate_error_with_loc",
+      "name": "_regenerate_error_with_loc",
+      "docstring": "",
+      "internal": true
+    }
+  ]
+}

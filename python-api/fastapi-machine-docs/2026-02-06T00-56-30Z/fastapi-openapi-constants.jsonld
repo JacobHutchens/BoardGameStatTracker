@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-openapi-constants",
+  "@type": "Document",
+  "modulePath": "fastapi.openapi.constants",
+  "outputFilename": "fastapi-openapi-constants.jsonld",
+  "internal": false,
+  "role": "constants",
+  "description": "FastAPI module: fastapi.openapi.constants",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

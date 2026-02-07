@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-middleware-trustedhost",
+  "@type": "Document",
+  "modulePath": "fastapi.middleware.trustedhost",
+  "outputFilename": "fastapi-middleware-trustedhost.jsonld",
+  "internal": false,
+  "role": "trustedhost",
+  "description": "FastAPI module: fastapi.middleware.trustedhost",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

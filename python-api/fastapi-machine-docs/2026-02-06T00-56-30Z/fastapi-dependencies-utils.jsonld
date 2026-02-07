@@ -1,0 +1,557 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-dependencies-utils",
+  "@type": "Document",
+  "modulePath": "fastapi.dependencies.utils",
+  "outputFilename": "fastapi-dependencies-utils.jsonld",
+  "internal": false,
+  "role": "utils",
+  "description": "FastAPI module: fastapi.dependencies.utils",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.dependencies.utils/ParamDetails",
+      "name": "ParamDetails",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.dependencies.utils/SolvedDependency",
+      "name": "SolvedDependency",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/ensure_multipart_is_installed",
+      "name": "ensure_multipart_is_installed",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_parameterless_sub_dependant",
+      "name": "get_parameterless_sub_dependant",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_flat_dependant",
+      "name": "get_flat_dependant",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_flat_params",
+      "name": "get_flat_params",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_typed_signature",
+      "name": "get_typed_signature",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_typed_annotation",
+      "name": "get_typed_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_typed_return_annotation",
+      "name": "get_typed_return_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_dependant",
+      "name": "get_dependant",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/add_non_field_param_to_dependency",
+      "name": "add_non_field_param_to_dependency",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/analyze_param",
+      "name": "analyze_param",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/add_param_to_fields",
+      "name": "add_param_to_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/solve_dependencies",
+      "name": "solve_dependencies",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/request_params_to_args",
+      "name": "request_params_to_args",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/is_union_of_base_models",
+      "name": "is_union_of_base_models",
+      "docstring": "Check if field type is a Union where all members are BaseModel subclasses.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/request_body_to_args",
+      "name": "request_body_to_args",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_body_field",
+      "name": "get_body_field",
+      "docstring": "Get a ModelField representing the request body for a path operation, combining\nall body parameters into a single field if necessary.\n\nUsed to check if it's form data (with `isinstance(body_field, params.Form)`)\nor JSON and to generate the JSON Schema for a request body.\n\nThis is **not** used to validate/parse the request body, that's done with each\nindividual body parameter.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_validation_alias",
+      "name": "get_validation_alias",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "params",
+      "sourceModule": "fastapi",
+      "sourceSymbol": "params"
+    },
+    {
+      "name": "ModelField",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "ModelField"
+    },
+    {
+      "name": "RequiredParam",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "RequiredParam"
+    },
+    {
+      "name": "Undefined",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "Undefined"
+    },
+    {
+      "name": "_regenerate_error_with_loc",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "_regenerate_error_with_loc"
+    },
+    {
+      "name": "copy_field_info",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "copy_field_info"
+    },
+    {
+      "name": "create_body_model",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "create_body_model"
+    },
+    {
+      "name": "evaluate_forwardref",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "evaluate_forwardref"
+    },
+    {
+      "name": "field_annotation_is_scalar",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "field_annotation_is_scalar"
+    },
+    {
+      "name": "get_cached_model_fields",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "get_cached_model_fields"
+    },
+    {
+      "name": "get_missing_field_error",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "get_missing_field_error"
+    },
+    {
+      "name": "is_bytes_field",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_bytes_field"
+    },
+    {
+      "name": "is_bytes_sequence_field",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_bytes_sequence_field"
+    },
+    {
+      "name": "is_scalar_field",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_scalar_field"
+    },
+    {
+      "name": "is_scalar_sequence_field",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_scalar_sequence_field"
+    },
+    {
+      "name": "is_sequence_field",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_sequence_field"
+    },
+    {
+      "name": "is_uploadfile_or_nonable_uploadfile_annotation",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_uploadfile_or_nonable_uploadfile_annotation"
+    },
+    {
+      "name": "is_uploadfile_sequence_annotation",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "is_uploadfile_sequence_annotation"
+    },
+    {
+      "name": "lenient_issubclass",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "lenient_issubclass"
+    },
+    {
+      "name": "sequence_types",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "sequence_types"
+    },
+    {
+      "name": "serialize_sequence_value",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "serialize_sequence_value"
+    },
+    {
+      "name": "value_is_sequence",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "value_is_sequence"
+    },
+    {
+      "name": "BackgroundTasks",
+      "sourceModule": "fastapi.background",
+      "sourceSymbol": "BackgroundTasks"
+    },
+    {
+      "name": "asynccontextmanager",
+      "sourceModule": "fastapi.concurrency",
+      "sourceSymbol": "asynccontextmanager"
+    },
+    {
+      "name": "contextmanager_in_threadpool",
+      "sourceModule": "fastapi.concurrency",
+      "sourceSymbol": "contextmanager_in_threadpool"
+    },
+    {
+      "name": "Dependant",
+      "sourceModule": "fastapi.dependencies.models",
+      "sourceSymbol": "Dependant"
+    },
+    {
+      "name": "DependencyScopeError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "DependencyScopeError"
+    },
+    {
+      "name": "logger",
+      "sourceModule": "fastapi.logger",
+      "sourceSymbol": "logger"
+    },
+    {
+      "name": "SecurityScopes",
+      "sourceModule": "fastapi.security.oauth2",
+      "sourceSymbol": "SecurityScopes"
+    },
+    {
+      "name": "DependencyCacheKey",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "DependencyCacheKey"
+    },
+    {
+      "name": "create_model_field",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "create_model_field"
+    },
+    {
+      "name": "get_path_param_names",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "get_path_param_names"
+    },
+    {
+      "name": "UnionType",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "UnionType"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi",
+      "symbols": [
+        "params"
+      ]
+    },
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "ModelField",
+        "RequiredParam",
+        "Undefined",
+        "_regenerate_error_with_loc",
+        "copy_field_info",
+        "create_body_model",
+        "evaluate_forwardref",
+        "field_annotation_is_scalar",
+        "get_cached_model_fields",
+        "get_missing_field_error",
+        "is_bytes_field",
+        "is_bytes_sequence_field",
+        "is_scalar_field",
+        "is_scalar_sequence_field",
+        "is_sequence_field",
+        "is_uploadfile_or_nonable_uploadfile_annotation",
+        "is_uploadfile_sequence_annotation",
+        "lenient_issubclass",
+        "sequence_types",
+        "serialize_sequence_value",
+        "value_is_sequence"
+      ]
+    },
+    {
+      "module": "fastapi.background",
+      "symbols": [
+        "BackgroundTasks"
+      ]
+    },
+    {
+      "module": "fastapi.concurrency",
+      "symbols": [
+        "asynccontextmanager",
+        "contextmanager_in_threadpool"
+      ]
+    },
+    {
+      "module": "fastapi.dependencies.models",
+      "symbols": [
+        "Dependant"
+      ]
+    },
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "DependencyScopeError"
+      ]
+    },
+    {
+      "module": "fastapi.logger",
+      "symbols": [
+        "logger"
+      ]
+    },
+    {
+      "module": "fastapi.security.oauth2",
+      "symbols": [
+        "SecurityScopes"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "DependencyCacheKey"
+      ]
+    },
+    {
+      "module": "fastapi.utils",
+      "symbols": [
+        "create_model_field",
+        "get_path_param_names"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "UnionType"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.dependencies.utils/ParamDetails",
+      "name": "ParamDetails",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.dependencies.utils/SolvedDependency",
+      "name": "SolvedDependency",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/ensure_multipart_is_installed",
+      "name": "ensure_multipart_is_installed",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_parameterless_sub_dependant",
+      "name": "get_parameterless_sub_dependant",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_flat_dependant",
+      "name": "get_flat_dependant",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_get_flat_fields_from_params",
+      "name": "_get_flat_fields_from_params",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_flat_params",
+      "name": "get_flat_params",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_get_signature",
+      "name": "_get_signature",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_typed_signature",
+      "name": "get_typed_signature",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_typed_annotation",
+      "name": "get_typed_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_typed_return_annotation",
+      "name": "get_typed_return_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_dependant",
+      "name": "get_dependant",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/add_non_field_param_to_dependency",
+      "name": "add_non_field_param_to_dependency",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/analyze_param",
+      "name": "analyze_param",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/add_param_to_fields",
+      "name": "add_param_to_fields",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_solve_generator",
+      "name": "_solve_generator",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/solve_dependencies",
+      "name": "solve_dependencies",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_validate_value_with_model_field",
+      "name": "_validate_value_with_model_field",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_is_json_field",
+      "name": "_is_json_field",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_get_multidict_value",
+      "name": "_get_multidict_value",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/request_params_to_args",
+      "name": "request_params_to_args",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/is_union_of_base_models",
+      "name": "is_union_of_base_models",
+      "docstring": "Check if field type is a Union where all members are BaseModel subclasses.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_should_embed_body_fields",
+      "name": "_should_embed_body_fields",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/_extract_form_body",
+      "name": "_extract_form_body",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/request_body_to_args",
+      "name": "request_body_to_args",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_body_field",
+      "name": "get_body_field",
+      "docstring": "Get a ModelField representing the request body for a path operation, combining\nall body parameters into a single field if necessary.\n\nUsed to check if it's form data (with `isinstance(body_field, params.Form)`)\nor JSON and to generate the JSON Schema for a request body.\n\nThis is **not** used to validate/parse the request body, that's done with each\nindividual body parameter.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.dependencies.utils/get_validation_alias",
+      "name": "get_validation_alias",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

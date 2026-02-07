@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-types",
+  "@type": "Document",
+  "modulePath": "fastapi.types",
+  "outputFilename": "fastapi-types.jsonld",
+  "internal": false,
+  "role": "types",
+  "description": "FastAPI module: fastapi.types",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

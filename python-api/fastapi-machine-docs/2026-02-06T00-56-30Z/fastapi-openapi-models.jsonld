@@ -1,0 +1,675 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-openapi-models",
+  "@type": "Document",
+  "modulePath": "fastapi.openapi.models",
+  "outputFilename": "fastapi-openapi-models.jsonld",
+  "internal": false,
+  "role": "models",
+  "description": "FastAPI module: fastapi.openapi.models",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/BaseModelWithConfig",
+      "name": "BaseModelWithConfig",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Contact",
+      "name": "Contact",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/License",
+      "name": "License",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Info",
+      "name": "Info",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ServerVariable",
+      "name": "ServerVariable",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Server",
+      "name": "Server",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Reference",
+      "name": "Reference",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Discriminator",
+      "name": "Discriminator",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/XML",
+      "name": "XML",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ExternalDocumentation",
+      "name": "ExternalDocumentation",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Schema",
+      "name": "Schema",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Example",
+      "name": "Example",
+      "bases": [
+        "TypedDict"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ParameterInType",
+      "name": "ParameterInType",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Encoding",
+      "name": "Encoding",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/MediaType",
+      "name": "MediaType",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ParameterBase",
+      "name": "ParameterBase",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Parameter",
+      "name": "Parameter",
+      "bases": [
+        "ParameterBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Header",
+      "name": "Header",
+      "bases": [
+        "ParameterBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/RequestBody",
+      "name": "RequestBody",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Link",
+      "name": "Link",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Response",
+      "name": "Response",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Operation",
+      "name": "Operation",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/PathItem",
+      "name": "PathItem",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/SecuritySchemeType",
+      "name": "SecuritySchemeType",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/SecurityBase",
+      "name": "SecurityBase",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/APIKeyIn",
+      "name": "APIKeyIn",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/APIKey",
+      "name": "APIKey",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/HTTPBase",
+      "name": "HTTPBase",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/HTTPBearer",
+      "name": "HTTPBearer",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlow",
+      "name": "OAuthFlow",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "with_info_plain_validator_function",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "with_info_plain_validator_function"
+    },
+    {
+      "name": "logger",
+      "sourceModule": "fastapi.logger",
+      "sourceSymbol": "logger"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "with_info_plain_validator_function"
+      ]
+    },
+    {
+      "module": "fastapi.logger",
+      "symbols": [
+        "logger"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/BaseModelWithConfig",
+      "name": "BaseModelWithConfig",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Contact",
+      "name": "Contact",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/License",
+      "name": "License",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Info",
+      "name": "Info",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ServerVariable",
+      "name": "ServerVariable",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Server",
+      "name": "Server",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Reference",
+      "name": "Reference",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Discriminator",
+      "name": "Discriminator",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/XML",
+      "name": "XML",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ExternalDocumentation",
+      "name": "ExternalDocumentation",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Schema",
+      "name": "Schema",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Example",
+      "name": "Example",
+      "bases": [
+        "TypedDict"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ParameterInType",
+      "name": "ParameterInType",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Encoding",
+      "name": "Encoding",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/MediaType",
+      "name": "MediaType",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/ParameterBase",
+      "name": "ParameterBase",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Parameter",
+      "name": "Parameter",
+      "bases": [
+        "ParameterBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Header",
+      "name": "Header",
+      "bases": [
+        "ParameterBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/RequestBody",
+      "name": "RequestBody",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Link",
+      "name": "Link",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Response",
+      "name": "Response",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Operation",
+      "name": "Operation",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/PathItem",
+      "name": "PathItem",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/SecuritySchemeType",
+      "name": "SecuritySchemeType",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/SecurityBase",
+      "name": "SecurityBase",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/APIKeyIn",
+      "name": "APIKeyIn",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/APIKey",
+      "name": "APIKey",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/HTTPBase",
+      "name": "HTTPBase",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/HTTPBearer",
+      "name": "HTTPBearer",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlow",
+      "name": "OAuthFlow",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlowImplicit",
+      "name": "OAuthFlowImplicit",
+      "bases": [
+        "OAuthFlow"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlowPassword",
+      "name": "OAuthFlowPassword",
+      "bases": [
+        "OAuthFlow"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlowClientCredentials",
+      "name": "OAuthFlowClientCredentials",
+      "bases": [
+        "OAuthFlow"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlowAuthorizationCode",
+      "name": "OAuthFlowAuthorizationCode",
+      "bases": [
+        "OAuthFlow"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuthFlows",
+      "name": "OAuthFlows",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OAuth2",
+      "name": "OAuth2",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OpenIdConnect",
+      "name": "OpenIdConnect",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Components",
+      "name": "Components",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/Tag",
+      "name": "Tag",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.openapi.models/OpenAPI",
+      "name": "OpenAPI",
+      "bases": [
+        "BaseModelWithConfig"
+      ],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

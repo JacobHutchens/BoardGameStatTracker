@@ -1,0 +1,186 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-security-http",
+  "@type": "Document",
+  "modulePath": "fastapi.security.http",
+  "outputFilename": "fastapi-security-http.jsonld",
+  "internal": false,
+  "role": "http",
+  "description": "FastAPI module: fastapi.security.http",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBasicCredentials",
+      "name": "HTTPBasicCredentials",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "The HTTP Basic credentials given as the result of using `HTTPBasic` in a\ndependency.\n\nRead more about it in the\n[FastAPI docs for HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPAuthorizationCredentials",
+      "name": "HTTPAuthorizationCredentials",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "The HTTP authorization credentials in the result of using `HTTPBearer` or\n`HTTPDigest` in a dependency.\n\nThe HTTP authorization header value is split by the first space.\n\nThe first part is the `scheme`, the second part is the `credentials`.\n\nFor example, in an HTTP Bearer token scheme, the client will send a header\nlike:\n\n```\nAuthorization: Bearer deadbeef12346\n```\n\nIn this case:\n\n* `scheme` will have the value `\"Bearer\"`\n* `credentials` will have the value `\"deadbeef12346\"`",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBase",
+      "name": "HTTPBase",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBasic",
+      "name": "HTTPBasic",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "HTTP Basic authentication.\n\nRef: https://datatracker.ietf.org/doc/html/rfc7617\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be an `HTTPBasicCredentials` object containing the\n`username` and the `password`.\n\nRead more about it in the\n[FastAPI docs for HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/).\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI\nfr",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBearer",
+      "name": "HTTPBearer",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "HTTP Bearer token authentication.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be an `HTTPAuthorizationCredentials` object containing\nthe `scheme` and the `credentials`.\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI\nfrom fastapi.security import HTTPAuthorizationCredentials, HTTPBearer\n\napp = FastAPI()\n\nsecurity = HTTPBearer()\n\n\n@app.get(\"/users/me\")\ndef read_current_user(\n    cre",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPDigest",
+      "name": "HTTPDigest",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "HTTP Digest authentication.\n\n**Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,\nbut it doesn't implement the full Digest scheme, you would need to to subclass it\nand implement it in your code.\n\nRef: https://datatracker.ietf.org/doc/html/rfc7616\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be an `HTTPAuthorizationCredentials` object containing\nthe `scheme` and the `credentials`.\n\n## Example\n",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "HTTPException",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "HTTPException"
+    },
+    {
+      "name": "HTTPBaseModel",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "HTTPBase"
+    },
+    {
+      "name": "HTTPBearerModel",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "HTTPBearer"
+    },
+    {
+      "name": "SecurityBase",
+      "sourceModule": "fastapi.security.base",
+      "sourceSymbol": "SecurityBase"
+    },
+    {
+      "name": "get_authorization_scheme_param",
+      "sourceModule": "fastapi.security.utils",
+      "sourceSymbol": "get_authorization_scheme_param"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "HTTPException"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "HTTPBaseModel"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "HTTPBearerModel"
+      ]
+    },
+    {
+      "module": "fastapi.security.base",
+      "symbols": [
+        "SecurityBase"
+      ]
+    },
+    {
+      "module": "fastapi.security.utils",
+      "symbols": [
+        "get_authorization_scheme_param"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBasicCredentials",
+      "name": "HTTPBasicCredentials",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "The HTTP Basic credentials given as the result of using `HTTPBasic` in a\ndependency.\n\nRead more about it in the\n[FastAPI docs for HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPAuthorizationCredentials",
+      "name": "HTTPAuthorizationCredentials",
+      "bases": [
+        "BaseModel"
+      ],
+      "docstring": "The HTTP authorization credentials in the result of using `HTTPBearer` or\n`HTTPDigest` in a dependency.\n\nThe HTTP authorization header value is split by the first space.\n\nThe first part is the `scheme`, the second part is the `credentials`.\n\nFor example, in an HTTP Bearer token scheme, the client will send a header\nlike:\n\n```\nAuthorization: Bearer deadbeef12346\n```\n\nIn this case:\n\n* `scheme` will have the value `\"Bearer\"`\n* `credentials` will have the value `\"deadbeef12346\"`",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBase",
+      "name": "HTTPBase",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBasic",
+      "name": "HTTPBasic",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "HTTP Basic authentication.\n\nRef: https://datatracker.ietf.org/doc/html/rfc7617\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be an `HTTPBasicCredentials` object containing the\n`username` and the `password`.\n\nRead more about it in the\n[FastAPI docs for HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/).\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI\nfr",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPBearer",
+      "name": "HTTPBearer",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "HTTP Bearer token authentication.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be an `HTTPAuthorizationCredentials` object containing\nthe `scheme` and the `credentials`.\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI\nfrom fastapi.security import HTTPAuthorizationCredentials, HTTPBearer\n\napp = FastAPI()\n\nsecurity = HTTPBearer()\n\n\n@app.get(\"/users/me\")\ndef read_current_user(\n    cre",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.http/HTTPDigest",
+      "name": "HTTPDigest",
+      "bases": [
+        "HTTPBase"
+      ],
+      "docstring": "HTTP Digest authentication.\n\n**Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,\nbut it doesn't implement the full Digest scheme, you would need to to subclass it\nand implement it in your code.\n\nRef: https://datatracker.ietf.org/doc/html/rfc7616\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be an `HTTPAuthorizationCredentials` object containing\nthe `scheme` and the `credentials`.\n\n## Example\n",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

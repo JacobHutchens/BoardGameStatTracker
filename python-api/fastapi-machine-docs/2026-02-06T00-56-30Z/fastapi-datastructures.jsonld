@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-datastructures",
+  "@type": "Document",
+  "modulePath": "fastapi.datastructures",
+  "outputFilename": "fastapi-datastructures.jsonld",
+  "internal": false,
+  "role": "datastructures",
+  "description": "FastAPI module: fastapi.datastructures",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.datastructures/UploadFile",
+      "name": "UploadFile",
+      "bases": [
+        "StarletteUploadFile"
+      ],
+      "docstring": "A file uploaded in a request.\n\nDefine it as a *path operation function* (or dependency) parameter.\n\nIf you are using a regular `def` function, you can use the `upload_file.file`\nattribute to access the raw standard Python file (blocking, not async), useful and\nneeded for non-async code.\n\nRead more about it in the\n[FastAPI docs for Request Files](https://fastapi.tiangolo.com/tutorial/request-files/).\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import FastAPI, File, UploadFil",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.datastructures/DefaultPlaceholder",
+      "name": "DefaultPlaceholder",
+      "bases": [],
+      "docstring": "You shouldn't use this class directly.\n\nIt's used internally to recognize when a default value has been overwritten, even\nif the overridden default value was truthy.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.datastructures/Default",
+      "name": "Default",
+      "docstring": "You shouldn't use this function directly.\n\nIt's used internally to recognize when a default value has been overwritten, even\nif the overridden default value was truthy.",
+      "internal": false
+    }
+  ],
+  "reExports": [],
+  "imports": [],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.datastructures/UploadFile",
+      "name": "UploadFile",
+      "bases": [
+        "StarletteUploadFile"
+      ],
+      "docstring": "A file uploaded in a request.\n\nDefine it as a *path operation function* (or dependency) parameter.\n\nIf you are using a regular `def` function, you can use the `upload_file.file`\nattribute to access the raw standard Python file (blocking, not async), useful and\nneeded for non-async code.\n\nRead more about it in the\n[FastAPI docs for Request Files](https://fastapi.tiangolo.com/tutorial/request-files/).\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import FastAPI, File, UploadFil",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.datastructures/DefaultPlaceholder",
+      "name": "DefaultPlaceholder",
+      "bases": [],
+      "docstring": "You shouldn't use this class directly.\n\nIt's used internally to recognize when a default value has been overwritten, even\nif the overridden default value was truthy.",
+      "internal": false
+    }
+  ],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.datastructures/Default",
+      "name": "Default",
+      "docstring": "You shouldn't use this function directly.\n\nIt's used internally to recognize when a default value has been overwritten, even\nif the overridden default value was truthy.",
+      "internal": false
+    }
+  ]
+}

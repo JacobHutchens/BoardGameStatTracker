@@ -1,0 +1,57 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-responses",
+  "@type": "Document",
+  "modulePath": "fastapi.responses",
+  "outputFilename": "fastapi-responses.jsonld",
+  "internal": false,
+  "role": "responses",
+  "description": "FastAPI module: fastapi.responses",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.responses/UJSONResponse",
+      "name": "UJSONResponse",
+      "bases": [
+        "JSONResponse"
+      ],
+      "docstring": "JSON response using the high-performance ujson library to serialize data to JSON.\n\nRead more about it in the\n[FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.responses/ORJSONResponse",
+      "name": "ORJSONResponse",
+      "bases": [
+        "JSONResponse"
+      ],
+      "docstring": "JSON response using the high-performance orjson library to serialize data to JSON.\n\nRead more about it in the\n[FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).",
+      "internal": false
+    }
+  ],
+  "reExports": [],
+  "imports": [],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.responses/UJSONResponse",
+      "name": "UJSONResponse",
+      "bases": [
+        "JSONResponse"
+      ],
+      "docstring": "JSON response using the high-performance ujson library to serialize data to JSON.\n\nRead more about it in the\n[FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.responses/ORJSONResponse",
+      "name": "ORJSONResponse",
+      "bases": [
+        "JSONResponse"
+      ],
+      "docstring": "JSON response using the high-performance orjson library to serialize data to JSON.\n\nRead more about it in the\n[FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

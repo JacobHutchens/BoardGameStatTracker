@@ -1,0 +1,239 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-params",
+  "@type": "Document",
+  "modulePath": "fastapi.params",
+  "outputFilename": "fastapi-params.jsonld",
+  "internal": false,
+  "role": "params",
+  "description": "FastAPI module: fastapi.params",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.params/ParamTypes",
+      "name": "ParamTypes",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Param",
+      "name": "Param",
+      "bases": [
+        "FieldInfo"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Path",
+      "name": "Path",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Query",
+      "name": "Query",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Header",
+      "name": "Header",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Cookie",
+      "name": "Cookie",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Body",
+      "name": "Body",
+      "bases": [
+        "FieldInfo"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Form",
+      "name": "Form",
+      "bases": [
+        "Body"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/File",
+      "name": "File",
+      "bases": [
+        "Form"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Depends",
+      "name": "Depends",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Security",
+      "name": "Security",
+      "bases": [
+        "Depends"
+      ],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "FastAPIDeprecationWarning",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "FastAPIDeprecationWarning"
+    },
+    {
+      "name": "Example",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "Example"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "FastAPIDeprecationWarning"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "Example"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.params/ParamTypes",
+      "name": "ParamTypes",
+      "bases": [
+        "Enum"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Param",
+      "name": "Param",
+      "bases": [
+        "FieldInfo"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Path",
+      "name": "Path",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Query",
+      "name": "Query",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Header",
+      "name": "Header",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Cookie",
+      "name": "Cookie",
+      "bases": [
+        "Param"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Body",
+      "name": "Body",
+      "bases": [
+        "FieldInfo"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Form",
+      "name": "Form",
+      "bases": [
+        "Body"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/File",
+      "name": "File",
+      "bases": [
+        "Form"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Depends",
+      "name": "Depends",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.params/Security",
+      "name": "Security",
+      "bases": [
+        "Depends"
+      ],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

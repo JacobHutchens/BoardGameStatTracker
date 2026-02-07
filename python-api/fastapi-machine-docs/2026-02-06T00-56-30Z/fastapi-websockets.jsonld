@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-websockets",
+  "@type": "Document",
+  "modulePath": "fastapi.websockets",
+  "outputFilename": "fastapi-websockets.jsonld",
+  "internal": false,
+  "role": "websockets",
+  "description": "FastAPI module: fastapi.websockets",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

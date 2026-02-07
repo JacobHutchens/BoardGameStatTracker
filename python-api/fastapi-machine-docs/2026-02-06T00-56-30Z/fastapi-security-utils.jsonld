@@ -1,0 +1,33 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-security-utils",
+  "@type": "Document",
+  "modulePath": "fastapi.security.utils",
+  "outputFilename": "fastapi-security-utils.jsonld",
+  "internal": false,
+  "role": "utils",
+  "description": "FastAPI module: fastapi.security.utils",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.security.utils/get_authorization_scheme_param",
+      "name": "get_authorization_scheme_param",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.security.utils/get_authorization_scheme_param",
+      "name": "get_authorization_scheme_param",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

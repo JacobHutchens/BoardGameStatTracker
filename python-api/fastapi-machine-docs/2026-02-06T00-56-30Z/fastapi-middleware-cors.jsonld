@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-middleware-cors",
+  "@type": "Document",
+  "modulePath": "fastapi.middleware.cors",
+  "outputFilename": "fastapi-middleware-cors.jsonld",
+  "internal": false,
+  "role": "cors",
+  "description": "FastAPI module: fastapi.middleware.cors",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

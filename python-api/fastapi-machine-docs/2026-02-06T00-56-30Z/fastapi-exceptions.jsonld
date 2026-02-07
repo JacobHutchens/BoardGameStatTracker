@@ -1,0 +1,219 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-exceptions",
+  "@type": "Document",
+  "modulePath": "fastapi.exceptions",
+  "outputFilename": "fastapi-exceptions.jsonld",
+  "internal": false,
+  "role": "exceptions",
+  "description": "FastAPI module: fastapi.exceptions",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.exceptions/EndpointContext",
+      "name": "EndpointContext",
+      "bases": [
+        "TypedDict"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/HTTPException",
+      "name": "HTTPException",
+      "bases": [
+        "StarletteHTTPException"
+      ],
+      "docstring": "An HTTP exception you can raise in your own code to show errors to the client.\n\nThis is for client errors, invalid authentication, invalid data, etc. Not for server\nerrors in your code.\n\nRead more about it in the\n[FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/).\n\n## Example\n\n```python\nfrom fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\nitems = {\"foo\": \"The Foo Wrestlers\"}\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: str):\n    if i",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/WebSocketException",
+      "name": "WebSocketException",
+      "bases": [
+        "StarletteWebSocketException"
+      ],
+      "docstring": "A WebSocket exception you can raise in your own code to show errors to the client.\n\nThis is for client errors, invalid authentication, invalid data, etc. Not for server\nerrors in your code.\n\nRead more about it in the\n[FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import (\n    Cookie,\n    FastAPI,\n    WebSocket,\n    WebSocketException,\n    status,\n)\n\napp = FastAPI()\n\n@app.websocket(\"/items/{item_i",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/FastAPIError",
+      "name": "FastAPIError",
+      "bases": [
+        "RuntimeError"
+      ],
+      "docstring": "A generic, FastAPI-specific error.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/DependencyScopeError",
+      "name": "DependencyScopeError",
+      "bases": [
+        "FastAPIError"
+      ],
+      "docstring": "A dependency declared that it depends on another dependency with an invalid\n(narrower) scope.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/ValidationException",
+      "name": "ValidationException",
+      "bases": [
+        "Exception"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/RequestValidationError",
+      "name": "RequestValidationError",
+      "bases": [
+        "ValidationException"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/WebSocketRequestValidationError",
+      "name": "WebSocketRequestValidationError",
+      "bases": [
+        "ValidationException"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/ResponseValidationError",
+      "name": "ResponseValidationError",
+      "bases": [
+        "ValidationException"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/PydanticV1NotSupportedError",
+      "name": "PydanticV1NotSupportedError",
+      "bases": [
+        "FastAPIError"
+      ],
+      "docstring": "A pydantic.v1 model is used, which is no longer supported.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/FastAPIDeprecationWarning",
+      "name": "FastAPIDeprecationWarning",
+      "bases": [
+        "UserWarning"
+      ],
+      "docstring": "A custom deprecation warning as DeprecationWarning is ignored\nRef: https://sethmlarson.dev/deprecations-via-warnings-dont-work-for-python-libraries",
+      "internal": false
+    }
+  ],
+  "reExports": [],
+  "imports": [],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.exceptions/EndpointContext",
+      "name": "EndpointContext",
+      "bases": [
+        "TypedDict"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/HTTPException",
+      "name": "HTTPException",
+      "bases": [
+        "StarletteHTTPException"
+      ],
+      "docstring": "An HTTP exception you can raise in your own code to show errors to the client.\n\nThis is for client errors, invalid authentication, invalid data, etc. Not for server\nerrors in your code.\n\nRead more about it in the\n[FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/).\n\n## Example\n\n```python\nfrom fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\nitems = {\"foo\": \"The Foo Wrestlers\"}\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: str):\n    if i",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/WebSocketException",
+      "name": "WebSocketException",
+      "bases": [
+        "StarletteWebSocketException"
+      ],
+      "docstring": "A WebSocket exception you can raise in your own code to show errors to the client.\n\nThis is for client errors, invalid authentication, invalid data, etc. Not for server\nerrors in your code.\n\nRead more about it in the\n[FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).\n\n## Example\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import (\n    Cookie,\n    FastAPI,\n    WebSocket,\n    WebSocketException,\n    status,\n)\n\napp = FastAPI()\n\n@app.websocket(\"/items/{item_i",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/FastAPIError",
+      "name": "FastAPIError",
+      "bases": [
+        "RuntimeError"
+      ],
+      "docstring": "A generic, FastAPI-specific error.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/DependencyScopeError",
+      "name": "DependencyScopeError",
+      "bases": [
+        "FastAPIError"
+      ],
+      "docstring": "A dependency declared that it depends on another dependency with an invalid\n(narrower) scope.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/ValidationException",
+      "name": "ValidationException",
+      "bases": [
+        "Exception"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/RequestValidationError",
+      "name": "RequestValidationError",
+      "bases": [
+        "ValidationException"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/WebSocketRequestValidationError",
+      "name": "WebSocketRequestValidationError",
+      "bases": [
+        "ValidationException"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/ResponseValidationError",
+      "name": "ResponseValidationError",
+      "bases": [
+        "ValidationException"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/PydanticV1NotSupportedError",
+      "name": "PydanticV1NotSupportedError",
+      "bases": [
+        "FastAPIError"
+      ],
+      "docstring": "A pydantic.v1 model is used, which is no longer supported.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.exceptions/FastAPIDeprecationWarning",
+      "name": "FastAPIDeprecationWarning",
+      "bases": [
+        "UserWarning"
+      ],
+      "docstring": "A custom deprecation warning as DeprecationWarning is ignored\nRef: https://sethmlarson.dev/deprecations-via-warnings-dont-work-for-python-libraries",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-templating",
+  "@type": "Document",
+  "modulePath": "fastapi.templating",
+  "outputFilename": "fastapi-templating.jsonld",
+  "internal": false,
+  "role": "templating",
+  "description": "FastAPI module: fastapi.templating",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

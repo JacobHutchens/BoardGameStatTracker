@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-security-base",
+  "@type": "Document",
+  "modulePath": "fastapi.security.base",
+  "outputFilename": "fastapi-security-base.jsonld",
+  "internal": false,
+  "role": "base",
+  "description": "FastAPI module: fastapi.security.base",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.security.base/SecurityBase",
+      "name": "SecurityBase",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "SecurityBaseModel",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "SecurityBase"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "SecurityBaseModel"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.security.base/SecurityBase",
+      "name": "SecurityBase",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-openapi---init--",
+  "@type": "Document",
+  "modulePath": "fastapi.openapi.__init__",
+  "outputFilename": "fastapi-openapi---init--.jsonld",
+  "internal": true,
+  "role": "__init__",
+  "description": "FastAPI module: fastapi.openapi.__init__",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

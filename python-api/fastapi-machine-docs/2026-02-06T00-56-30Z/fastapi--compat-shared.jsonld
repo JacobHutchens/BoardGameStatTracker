@@ -1,0 +1,202 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi--compat-shared",
+  "@type": "Document",
+  "modulePath": "fastapi._compat.shared",
+  "outputFilename": "fastapi--compat-shared.jsonld",
+  "internal": true,
+  "role": "shared",
+  "description": "FastAPI module: fastapi._compat.shared",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/lenient_issubclass",
+      "name": "lenient_issubclass",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_sequence",
+      "name": "field_annotation_is_sequence",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/value_is_sequence",
+      "name": "value_is_sequence",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_complex",
+      "name": "field_annotation_is_complex",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_scalar",
+      "name": "field_annotation_is_scalar",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_scalar_sequence",
+      "name": "field_annotation_is_scalar_sequence",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_bytes_or_nonable_bytes_annotation",
+      "name": "is_bytes_or_nonable_bytes_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_uploadfile_or_nonable_uploadfile_annotation",
+      "name": "is_uploadfile_or_nonable_uploadfile_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_bytes_sequence_annotation",
+      "name": "is_bytes_sequence_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_uploadfile_sequence_annotation",
+      "name": "is_uploadfile_sequence_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_pydantic_v1_model_instance",
+      "name": "is_pydantic_v1_model_instance",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_pydantic_v1_model_class",
+      "name": "is_pydantic_v1_model_class",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/annotation_is_pydantic_v1",
+      "name": "annotation_is_pydantic_v1",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "UnionType",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "UnionType"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "UnionType"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/lenient_issubclass",
+      "name": "lenient_issubclass",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/_annotation_is_sequence",
+      "name": "_annotation_is_sequence",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_sequence",
+      "name": "field_annotation_is_sequence",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/value_is_sequence",
+      "name": "value_is_sequence",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/_annotation_is_complex",
+      "name": "_annotation_is_complex",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_complex",
+      "name": "field_annotation_is_complex",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_scalar",
+      "name": "field_annotation_is_scalar",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/field_annotation_is_scalar_sequence",
+      "name": "field_annotation_is_scalar_sequence",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_bytes_or_nonable_bytes_annotation",
+      "name": "is_bytes_or_nonable_bytes_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_uploadfile_or_nonable_uploadfile_annotation",
+      "name": "is_uploadfile_or_nonable_uploadfile_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_bytes_sequence_annotation",
+      "name": "is_bytes_sequence_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_uploadfile_sequence_annotation",
+      "name": "is_uploadfile_sequence_annotation",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_pydantic_v1_model_instance",
+      "name": "is_pydantic_v1_model_instance",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/is_pydantic_v1_model_class",
+      "name": "is_pydantic_v1_model_class",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi._compat.shared/annotation_is_pydantic_v1",
+      "name": "annotation_is_pydantic_v1",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-openapi-utils",
+  "@type": "Document",
+  "modulePath": "fastapi.openapi.utils",
+  "outputFilename": "fastapi-openapi-utils.jsonld",
+  "internal": false,
+  "role": "utils",
+  "description": "FastAPI module: fastapi.openapi.utils",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_security_definitions",
+      "name": "get_openapi_security_definitions",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_operation_request_body",
+      "name": "get_openapi_operation_request_body",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/generate_operation_id",
+      "name": "generate_operation_id",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/generate_operation_summary",
+      "name": "generate_operation_summary",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_operation_metadata",
+      "name": "get_openapi_operation_metadata",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_path",
+      "name": "get_openapi_path",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_fields_from_routes",
+      "name": "get_fields_from_routes",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi",
+      "name": "get_openapi",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "routing",
+      "sourceModule": "fastapi",
+      "sourceSymbol": "routing"
+    },
+    {
+      "name": "ModelField",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "ModelField"
+    },
+    {
+      "name": "Undefined",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "Undefined"
+    },
+    {
+      "name": "get_compat_model_name_map",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "get_compat_model_name_map"
+    },
+    {
+      "name": "get_definitions",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "get_definitions"
+    },
+    {
+      "name": "get_schema_from_model_field",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "get_schema_from_model_field"
+    },
+    {
+      "name": "lenient_issubclass",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "lenient_issubclass"
+    },
+    {
+      "name": "DefaultPlaceholder",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "DefaultPlaceholder"
+    },
+    {
+      "name": "Dependant",
+      "sourceModule": "fastapi.dependencies.models",
+      "sourceSymbol": "Dependant"
+    },
+    {
+      "name": "_get_flat_fields_from_params",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "_get_flat_fields_from_params"
+    },
+    {
+      "name": "get_flat_dependant",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_flat_dependant"
+    },
+    {
+      "name": "get_flat_params",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_flat_params"
+    },
+    {
+      "name": "get_validation_alias",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_validation_alias"
+    },
+    {
+      "name": "jsonable_encoder",
+      "sourceModule": "fastapi.encoders",
+      "sourceSymbol": "jsonable_encoder"
+    },
+    {
+      "name": "FastAPIDeprecationWarning",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "FastAPIDeprecationWarning"
+    },
+    {
+      "name": "METHODS_WITH_BODY",
+      "sourceModule": "fastapi.openapi.constants",
+      "sourceSymbol": "METHODS_WITH_BODY"
+    },
+    {
+      "name": "REF_PREFIX",
+      "sourceModule": "fastapi.openapi.constants",
+      "sourceSymbol": "REF_PREFIX"
+    },
+    {
+      "name": "OpenAPI",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "OpenAPI"
+    },
+    {
+      "name": "Body",
+      "sourceModule": "fastapi.params",
+      "sourceSymbol": "Body"
+    },
+    {
+      "name": "ParamTypes",
+      "sourceModule": "fastapi.params",
+      "sourceSymbol": "ParamTypes"
+    },
+    {
+      "name": "Response",
+      "sourceModule": "fastapi.responses",
+      "sourceSymbol": "Response"
+    },
+    {
+      "name": "ModelNameMap",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "ModelNameMap"
+    },
+    {
+      "name": "deep_dict_update",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "deep_dict_update"
+    },
+    {
+      "name": "generate_operation_id_for_path",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "generate_operation_id_for_path"
+    },
+    {
+      "name": "is_body_allowed_for_status_code",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "is_body_allowed_for_status_code"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi",
+      "symbols": [
+        "routing"
+      ]
+    },
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "ModelField",
+        "Undefined",
+        "get_compat_model_name_map",
+        "get_definitions",
+        "get_schema_from_model_field",
+        "lenient_issubclass"
+      ]
+    },
+    {
+      "module": "fastapi.datastructures",
+      "symbols": [
+        "DefaultPlaceholder"
+      ]
+    },
+    {
+      "module": "fastapi.dependencies.models",
+      "symbols": [
+        "Dependant"
+      ]
+    },
+    {
+      "module": "fastapi.dependencies.utils",
+      "symbols": [
+        "_get_flat_fields_from_params",
+        "get_flat_dependant",
+        "get_flat_params",
+        "get_validation_alias"
+      ]
+    },
+    {
+      "module": "fastapi.encoders",
+      "symbols": [
+        "jsonable_encoder"
+      ]
+    },
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "FastAPIDeprecationWarning"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.constants",
+      "symbols": [
+        "METHODS_WITH_BODY",
+        "REF_PREFIX"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "OpenAPI"
+      ]
+    },
+    {
+      "module": "fastapi.params",
+      "symbols": [
+        "Body",
+        "ParamTypes"
+      ]
+    },
+    {
+      "module": "fastapi.responses",
+      "symbols": [
+        "Response"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "ModelNameMap"
+      ]
+    },
+    {
+      "module": "fastapi.utils",
+      "symbols": [
+        "deep_dict_update",
+        "generate_operation_id_for_path",
+        "is_body_allowed_for_status_code"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_security_definitions",
+      "name": "get_openapi_security_definitions",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/_get_openapi_operation_parameters",
+      "name": "_get_openapi_operation_parameters",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_operation_request_body",
+      "name": "get_openapi_operation_request_body",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/generate_operation_id",
+      "name": "generate_operation_id",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/generate_operation_summary",
+      "name": "generate_operation_summary",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_operation_metadata",
+      "name": "get_openapi_operation_metadata",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi_path",
+      "name": "get_openapi_path",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_fields_from_routes",
+      "name": "get_fields_from_routes",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.utils/get_openapi",
+      "name": "get_openapi",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

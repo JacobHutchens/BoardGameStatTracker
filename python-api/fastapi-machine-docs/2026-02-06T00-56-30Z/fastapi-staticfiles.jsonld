@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-staticfiles",
+  "@type": "Document",
+  "modulePath": "fastapi.staticfiles",
+  "outputFilename": "fastapi-staticfiles.jsonld",
+  "internal": false,
+  "role": "staticfiles",
+  "description": "FastAPI module: fastapi.staticfiles",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

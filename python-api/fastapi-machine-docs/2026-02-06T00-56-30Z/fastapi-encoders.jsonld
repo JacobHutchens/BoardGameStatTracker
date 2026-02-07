@@ -1,0 +1,93 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-encoders",
+  "@type": "Document",
+  "modulePath": "fastapi.encoders",
+  "outputFilename": "fastapi-encoders.jsonld",
+  "internal": false,
+  "role": "encoders",
+  "description": "FastAPI module: fastapi.encoders",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.encoders/isoformat",
+      "name": "isoformat",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.encoders/decimal_encoder",
+      "name": "decimal_encoder",
+      "docstring": "Encodes a Decimal as int if there's no exponent, otherwise float\n\nThis is useful when we use ConstrainedDecimal to represent Numeric(x,0)\nwhere an integer (but not int typed) is used. Encoding this as a float\nresults in failed round-tripping between encode and parse.\nOur Id type is a prime example of this.\n\n>>> decimal_encoder(Decimal(\"1.0\"))\n1.0\n\n>>> decimal_encoder(Decimal(\"1\"))\n1\n\n>>> decimal_encoder(Decimal(\"NaN\"))\nnan",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.encoders/generate_encoders_by_class_tuples",
+      "name": "generate_encoders_by_class_tuples",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.encoders/jsonable_encoder",
+      "name": "jsonable_encoder",
+      "docstring": "Convert any object to something that can be encoded in JSON.\n\nThis is used internally by FastAPI to make sure anything you return can be\nencoded as JSON before it is sent to the client.\n\nYou can also use it yourself, for example to convert objects before saving them\nin a database that supports only JSON.\n\nRead more about it in the\n[FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "PydanticV1NotSupportedError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "PydanticV1NotSupportedError"
+    },
+    {
+      "name": "IncEx",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "IncEx"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "PydanticV1NotSupportedError"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "IncEx"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.encoders/isoformat",
+      "name": "isoformat",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.encoders/decimal_encoder",
+      "name": "decimal_encoder",
+      "docstring": "Encodes a Decimal as int if there's no exponent, otherwise float\n\nThis is useful when we use ConstrainedDecimal to represent Numeric(x,0)\nwhere an integer (but not int typed) is used. Encoding this as a float\nresults in failed round-tripping between encode and parse.\nOur Id type is a prime example of this.\n\n>>> decimal_encoder(Decimal(\"1.0\"))\n1.0\n\n>>> decimal_encoder(Decimal(\"1\"))\n1\n\n>>> decimal_encoder(Decimal(\"NaN\"))\nnan",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.encoders/generate_encoders_by_class_tuples",
+      "name": "generate_encoders_by_class_tuples",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.encoders/jsonable_encoder",
+      "name": "jsonable_encoder",
+      "docstring": "Convert any object to something that can be encoded in JSON.\n\nThis is used internally by FastAPI to make sure anything you return can be\nencoded as JSON before it is sent to the client.\n\nYou can also use it yourself, for example to convert objects before saving them\nin a database that supports only JSON.\n\nRead more about it in the\n[FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).",
+      "internal": false
+    }
+  ]
+}

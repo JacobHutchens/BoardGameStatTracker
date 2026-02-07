@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-exception-handlers",
+  "@type": "Document",
+  "modulePath": "fastapi.exception_handlers",
+  "outputFilename": "fastapi-exception-handlers.jsonld",
+  "internal": false,
+  "role": "exception_handlers",
+  "description": "FastAPI module: fastapi.exception_handlers",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.exception_handlers/http_exception_handler",
+      "name": "http_exception_handler",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.exception_handlers/request_validation_exception_handler",
+      "name": "request_validation_exception_handler",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.exception_handlers/websocket_request_validation_exception_handler",
+      "name": "websocket_request_validation_exception_handler",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "jsonable_encoder",
+      "sourceModule": "fastapi.encoders",
+      "sourceSymbol": "jsonable_encoder"
+    },
+    {
+      "name": "RequestValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "RequestValidationError"
+    },
+    {
+      "name": "WebSocketRequestValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "WebSocketRequestValidationError"
+    },
+    {
+      "name": "is_body_allowed_for_status_code",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "is_body_allowed_for_status_code"
+    },
+    {
+      "name": "WebSocket",
+      "sourceModule": "fastapi.websockets",
+      "sourceSymbol": "WebSocket"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.encoders",
+      "symbols": [
+        "jsonable_encoder"
+      ]
+    },
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "RequestValidationError",
+        "WebSocketRequestValidationError"
+      ]
+    },
+    {
+      "module": "fastapi.utils",
+      "symbols": [
+        "is_body_allowed_for_status_code"
+      ]
+    },
+    {
+      "module": "fastapi.websockets",
+      "symbols": [
+        "WebSocket"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.exception_handlers/http_exception_handler",
+      "name": "http_exception_handler",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.exception_handlers/request_validation_exception_handler",
+      "name": "request_validation_exception_handler",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.exception_handlers/websocket_request_validation_exception_handler",
+      "name": "websocket_request_validation_exception_handler",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

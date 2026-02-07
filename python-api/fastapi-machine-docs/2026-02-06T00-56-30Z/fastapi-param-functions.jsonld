@@ -1,0 +1,164 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-param-functions",
+  "@type": "Document",
+  "modulePath": "fastapi.param_functions",
+  "outputFilename": "fastapi-param-functions.jsonld",
+  "internal": false,
+  "role": "param_functions",
+  "description": "FastAPI module: fastapi.param_functions",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Path",
+      "name": "Path",
+      "docstring": "Declare a path parameter for a *path operation*.\n\nRead more about it in the\n[FastAPI docs for Path Parameters and Numeric Validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/).\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import FastAPI, Path\n\napp = FastAPI()\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_items(\n    item_id: Annotated[int, Path(title=\"The ID of the item to get\")],\n):\n    return {\"item_id\": item_id}\n```",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Query",
+      "name": "Query",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Header",
+      "name": "Header",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Cookie",
+      "name": "Cookie",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Body",
+      "name": "Body",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Form",
+      "name": "Form",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/File",
+      "name": "File",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Depends",
+      "name": "Depends",
+      "docstring": "Declare a FastAPI dependency.\n\nIt takes a single \"dependable\" callable (like a function).\n\nDon't call it directly, FastAPI will call it for you.\n\nRead more about it in the\n[FastAPI docs for Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/).\n\n**Example**\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI\n\napp = FastAPI()\n\n\nasync def common_parameters(q: str | None = None, skip: int = 0, limit: int = 100):\n    return {\"q\": q, \"skip\": skip, \"limit\": limit",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Security",
+      "name": "Security",
+      "docstring": "Declare a FastAPI Security dependency.\n\nThe only difference with a regular dependency is that it can declare OAuth2\nscopes that will be integrated with OpenAPI and the automatic UI docs (by default\nat `/docs`).\n\nIt takes a single \"dependable\" callable (like a function).\n\nDon't call it directly, FastAPI will call it for you.\n\nRead more about it in the\n[FastAPI docs for Security](https://fastapi.tiangolo.com/tutorial/security/) and\nin the\n[FastAPI docs for OAuth2 scopes](https://fastapi.tiangolo.c",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "params",
+      "sourceModule": "fastapi",
+      "sourceSymbol": "params"
+    },
+    {
+      "name": "Undefined",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "Undefined"
+    },
+    {
+      "name": "Example",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "Example"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi",
+      "symbols": [
+        "params"
+      ]
+    },
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "Undefined"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "Example"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Path",
+      "name": "Path",
+      "docstring": "Declare a path parameter for a *path operation*.\n\nRead more about it in the\n[FastAPI docs for Path Parameters and Numeric Validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/).\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import FastAPI, Path\n\napp = FastAPI()\n\n\n@app.get(\"/items/{item_id}\")\nasync def read_items(\n    item_id: Annotated[int, Path(title=\"The ID of the item to get\")],\n):\n    return {\"item_id\": item_id}\n```",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Query",
+      "name": "Query",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Header",
+      "name": "Header",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Cookie",
+      "name": "Cookie",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Body",
+      "name": "Body",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Form",
+      "name": "Form",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/File",
+      "name": "File",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Depends",
+      "name": "Depends",
+      "docstring": "Declare a FastAPI dependency.\n\nIt takes a single \"dependable\" callable (like a function).\n\nDon't call it directly, FastAPI will call it for you.\n\nRead more about it in the\n[FastAPI docs for Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/).\n\n**Example**\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Depends, FastAPI\n\napp = FastAPI()\n\n\nasync def common_parameters(q: str | None = None, skip: int = 0, limit: int = 100):\n    return {\"q\": q, \"skip\": skip, \"limit\": limit",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.param_functions/Security",
+      "name": "Security",
+      "docstring": "Declare a FastAPI Security dependency.\n\nThe only difference with a regular dependency is that it can declare OAuth2\nscopes that will be integrated with OpenAPI and the automatic UI docs (by default\nat `/docs`).\n\nIt takes a single \"dependable\" callable (like a function).\n\nDon't call it directly, FastAPI will call it for you.\n\nRead more about it in the\n[FastAPI docs for Security](https://fastapi.tiangolo.com/tutorial/security/) and\nin the\n[FastAPI docs for OAuth2 scopes](https://fastapi.tiangolo.c",
+      "internal": false
+    }
+  ]
+}

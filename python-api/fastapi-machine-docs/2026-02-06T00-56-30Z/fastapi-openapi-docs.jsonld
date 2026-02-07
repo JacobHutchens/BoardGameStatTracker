@@ -1,0 +1,70 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-openapi-docs",
+  "@type": "Document",
+  "modulePath": "fastapi.openapi.docs",
+  "outputFilename": "fastapi-openapi-docs.jsonld",
+  "internal": false,
+  "role": "docs",
+  "description": "FastAPI module: fastapi.openapi.docs",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.openapi.docs/get_swagger_ui_html",
+      "name": "get_swagger_ui_html",
+      "docstring": "Generate and return the HTML  that loads Swagger UI for the interactive\nAPI docs (normally served at `/docs`).\n\nYou would only call this function yourself if you needed to override some parts,\nfor example the URLs to use to load Swagger UI's JavaScript and CSS.\n\nRead more about it in the\n[FastAPI docs for Configure Swagger UI](https://fastapi.tiangolo.com/how-to/configure-swagger-ui/)\nand the [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custo",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.docs/get_redoc_html",
+      "name": "get_redoc_html",
+      "docstring": "Generate and return the HTML response that loads ReDoc for the alternative\nAPI docs (normally served at `/redoc`).\n\nYou would only call this function yourself if you needed to override some parts,\nfor example the URLs to use to load ReDoc's JavaScript and CSS.\n\nRead more about it in the\n[FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.docs/get_swagger_ui_oauth2_redirect_html",
+      "name": "get_swagger_ui_oauth2_redirect_html",
+      "docstring": "Generate the HTML response with the OAuth2 redirection for Swagger UI.\n\nYou normally don't need to use or change this.",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "jsonable_encoder",
+      "sourceModule": "fastapi.encoders",
+      "sourceSymbol": "jsonable_encoder"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.encoders",
+      "symbols": [
+        "jsonable_encoder"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.openapi.docs/get_swagger_ui_html",
+      "name": "get_swagger_ui_html",
+      "docstring": "Generate and return the HTML  that loads Swagger UI for the interactive\nAPI docs (normally served at `/docs`).\n\nYou would only call this function yourself if you needed to override some parts,\nfor example the URLs to use to load Swagger UI's JavaScript and CSS.\n\nRead more about it in the\n[FastAPI docs for Configure Swagger UI](https://fastapi.tiangolo.com/how-to/configure-swagger-ui/)\nand the [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custo",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.docs/get_redoc_html",
+      "name": "get_redoc_html",
+      "docstring": "Generate and return the HTML response that loads ReDoc for the alternative\nAPI docs (normally served at `/redoc`).\n\nYou would only call this function yourself if you needed to override some parts,\nfor example the URLs to use to load ReDoc's JavaScript and CSS.\n\nRead more about it in the\n[FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.openapi.docs/get_swagger_ui_oauth2_redirect_html",
+      "name": "get_swagger_ui_oauth2_redirect_html",
+      "docstring": "Generate the HTML response with the OAuth2 redirection for Swagger UI.\n\nYou normally don't need to use or change this.",
+      "internal": false
+    }
+  ]
+}

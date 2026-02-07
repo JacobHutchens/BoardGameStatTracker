@@ -1,0 +1,123 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-security-api-key",
+  "@type": "Document",
+  "modulePath": "fastapi.security.api_key",
+  "outputFilename": "fastapi-security-api-key.jsonld",
+  "internal": false,
+  "role": "api_key",
+  "description": "FastAPI module: fastapi.security.api_key",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyBase",
+      "name": "APIKeyBase",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyQuery",
+      "name": "APIKeyQuery",
+      "bases": [
+        "APIKeyBase"
+      ],
+      "docstring": "API key authentication using a query parameter.\n\nThis defines the name of the query parameter that should be provided in the request\nwith the API key and integrates that into the OpenAPI documentation. It extracts\nthe key value sent in the query parameter automatically and provides it as the\ndependency result. But it doesn't define how to send that API key to the client.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be a st",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyHeader",
+      "name": "APIKeyHeader",
+      "bases": [
+        "APIKeyBase"
+      ],
+      "docstring": "API key authentication using a header.\n\nThis defines the name of the header that should be provided in the request with\nthe API key and integrates that into the OpenAPI documentation. It extracts\nthe key value sent in the header automatically and provides it as the dependency\nresult. But it doesn't define how to send that key to the client.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be a string containing the key value.\n",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyCookie",
+      "name": "APIKeyCookie",
+      "bases": [
+        "APIKeyBase"
+      ],
+      "docstring": "API key authentication using a cookie.\n\nThis defines the name of the cookie that should be provided in the request with\nthe API key and integrates that into the OpenAPI documentation. It extracts\nthe key value sent in the cookie automatically and provides it as the dependency\nresult. But it doesn't define how to set that cookie.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be a string containing the key value.\n\n## Example\n",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "APIKey",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "APIKey"
+    },
+    {
+      "name": "APIKeyIn",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "APIKeyIn"
+    },
+    {
+      "name": "SecurityBase",
+      "sourceModule": "fastapi.security.base",
+      "sourceSymbol": "SecurityBase"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "APIKey",
+        "APIKeyIn"
+      ]
+    },
+    {
+      "module": "fastapi.security.base",
+      "symbols": [
+        "SecurityBase"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyBase",
+      "name": "APIKeyBase",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyQuery",
+      "name": "APIKeyQuery",
+      "bases": [
+        "APIKeyBase"
+      ],
+      "docstring": "API key authentication using a query parameter.\n\nThis defines the name of the query parameter that should be provided in the request\nwith the API key and integrates that into the OpenAPI documentation. It extracts\nthe key value sent in the query parameter automatically and provides it as the\ndependency result. But it doesn't define how to send that API key to the client.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be a st",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyHeader",
+      "name": "APIKeyHeader",
+      "bases": [
+        "APIKeyBase"
+      ],
+      "docstring": "API key authentication using a header.\n\nThis defines the name of the header that should be provided in the request with\nthe API key and integrates that into the OpenAPI documentation. It extracts\nthe key value sent in the header automatically and provides it as the dependency\nresult. But it doesn't define how to send that key to the client.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be a string containing the key value.\n",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.api_key/APIKeyCookie",
+      "name": "APIKeyCookie",
+      "bases": [
+        "APIKeyBase"
+      ],
+      "docstring": "API key authentication using a cookie.\n\nThis defines the name of the cookie that should be provided in the request with\nthe API key and integrates that into the OpenAPI documentation. It extracts\nthe key value sent in the cookie automatically and provides it as the dependency\nresult. But it doesn't define how to set that cookie.\n\n## Usage\n\nCreate an instance object and use that object as the dependency in `Depends()`.\n\nThe dependency result will be a string containing the key value.\n\n## Example\n",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

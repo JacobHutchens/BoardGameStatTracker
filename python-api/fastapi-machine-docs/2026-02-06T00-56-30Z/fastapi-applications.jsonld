@@ -1,0 +1,204 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-applications",
+  "@type": "Document",
+  "modulePath": "fastapi.applications",
+  "outputFilename": "fastapi-applications.jsonld",
+  "internal": false,
+  "role": "applications",
+  "description": "FastAPI module: fastapi.applications",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.applications/FastAPI",
+      "name": "FastAPI",
+      "bases": [
+        "Starlette"
+      ],
+      "docstring": "`FastAPI` app class, the main entrypoint to use FastAPI.\n\nRead more in the\n[FastAPI docs for First Steps](https://fastapi.tiangolo.com/tutorial/first-steps/).\n\n## Example\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n```",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "routing",
+      "sourceModule": "fastapi",
+      "sourceSymbol": "routing"
+    },
+    {
+      "name": "Default",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "Default"
+    },
+    {
+      "name": "DefaultPlaceholder",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "DefaultPlaceholder"
+    },
+    {
+      "name": "http_exception_handler",
+      "sourceModule": "fastapi.exception_handlers",
+      "sourceSymbol": "http_exception_handler"
+    },
+    {
+      "name": "request_validation_exception_handler",
+      "sourceModule": "fastapi.exception_handlers",
+      "sourceSymbol": "request_validation_exception_handler"
+    },
+    {
+      "name": "websocket_request_validation_exception_handler",
+      "sourceModule": "fastapi.exception_handlers",
+      "sourceSymbol": "websocket_request_validation_exception_handler"
+    },
+    {
+      "name": "RequestValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "RequestValidationError"
+    },
+    {
+      "name": "WebSocketRequestValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "WebSocketRequestValidationError"
+    },
+    {
+      "name": "logger",
+      "sourceModule": "fastapi.logger",
+      "sourceSymbol": "logger"
+    },
+    {
+      "name": "AsyncExitStackMiddleware",
+      "sourceModule": "fastapi.middleware.asyncexitstack",
+      "sourceSymbol": "AsyncExitStackMiddleware"
+    },
+    {
+      "name": "get_redoc_html",
+      "sourceModule": "fastapi.openapi.docs",
+      "sourceSymbol": "get_redoc_html"
+    },
+    {
+      "name": "get_swagger_ui_html",
+      "sourceModule": "fastapi.openapi.docs",
+      "sourceSymbol": "get_swagger_ui_html"
+    },
+    {
+      "name": "get_swagger_ui_oauth2_redirect_html",
+      "sourceModule": "fastapi.openapi.docs",
+      "sourceSymbol": "get_swagger_ui_oauth2_redirect_html"
+    },
+    {
+      "name": "get_openapi",
+      "sourceModule": "fastapi.openapi.utils",
+      "sourceSymbol": "get_openapi"
+    },
+    {
+      "name": "Depends",
+      "sourceModule": "fastapi.params",
+      "sourceSymbol": "Depends"
+    },
+    {
+      "name": "DecoratedCallable",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "DecoratedCallable"
+    },
+    {
+      "name": "IncEx",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "IncEx"
+    },
+    {
+      "name": "generate_unique_id",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "generate_unique_id"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi",
+      "symbols": [
+        "routing"
+      ]
+    },
+    {
+      "module": "fastapi.datastructures",
+      "symbols": [
+        "Default",
+        "DefaultPlaceholder"
+      ]
+    },
+    {
+      "module": "fastapi.exception_handlers",
+      "symbols": [
+        "http_exception_handler",
+        "request_validation_exception_handler",
+        "websocket_request_validation_exception_handler"
+      ]
+    },
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "RequestValidationError",
+        "WebSocketRequestValidationError"
+      ]
+    },
+    {
+      "module": "fastapi.logger",
+      "symbols": [
+        "logger"
+      ]
+    },
+    {
+      "module": "fastapi.middleware.asyncexitstack",
+      "symbols": [
+        "AsyncExitStackMiddleware"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.docs",
+      "symbols": [
+        "get_redoc_html",
+        "get_swagger_ui_html",
+        "get_swagger_ui_oauth2_redirect_html"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.utils",
+      "symbols": [
+        "get_openapi"
+      ]
+    },
+    {
+      "module": "fastapi.params",
+      "symbols": [
+        "Depends"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "DecoratedCallable",
+        "IncEx"
+      ]
+    },
+    {
+      "module": "fastapi.utils",
+      "symbols": [
+        "generate_unique_id"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.applications/FastAPI",
+      "name": "FastAPI",
+      "bases": [
+        "Starlette"
+      ],
+      "docstring": "`FastAPI` app class, the main entrypoint to use FastAPI.\n\nRead more in the\n[FastAPI docs for First Steps](https://fastapi.tiangolo.com/tutorial/first-steps/).\n\n## Example\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n```",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

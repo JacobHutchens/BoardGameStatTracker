@@ -1,0 +1,381 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-routing",
+  "@type": "Document",
+  "modulePath": "fastapi.routing",
+  "outputFilename": "fastapi-routing.jsonld",
+  "internal": false,
+  "role": "routing",
+  "description": "FastAPI module: fastapi.routing",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.routing/APIWebSocketRoute",
+      "name": "APIWebSocketRoute",
+      "bases": [
+        "routing.WebSocketRoute"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.routing/APIRoute",
+      "name": "APIRoute",
+      "bases": [
+        "routing.Route"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.routing/APIRouter",
+      "name": "APIRouter",
+      "bases": [
+        "routing.Router"
+      ],
+      "docstring": "`APIRouter` class, used to group *path operations*, for example to structure\nan app in multiple files. It would then be included in the `FastAPI` app, or\nin another `APIRouter` (ultimately included in the app).\n\nRead more about it in the\n[FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/).\n\n## Example\n\n```python\nfrom fastapi import APIRouter, FastAPI\n\napp = FastAPI()\nrouter = APIRouter()\n\n\n@router.get(\"/users/\", tags=[\"users\"])\nasyn",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/request_response",
+      "name": "request_response",
+      "docstring": "Takes a function or coroutine `func(request) -> response`,\nand returns an ASGI application.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/websocket_session",
+      "name": "websocket_session",
+      "docstring": "Takes a coroutine `func(session)`, and returns an ASGI application.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/serialize_response",
+      "name": "serialize_response",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/run_endpoint_function",
+      "name": "run_endpoint_function",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/get_request_handler",
+      "name": "get_request_handler",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/get_websocket_app",
+      "name": "get_websocket_app",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "params",
+      "sourceModule": "fastapi",
+      "sourceSymbol": "params"
+    },
+    {
+      "name": "ModelField",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "ModelField"
+    },
+    {
+      "name": "Undefined",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "Undefined"
+    },
+    {
+      "name": "annotation_is_pydantic_v1",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "annotation_is_pydantic_v1"
+    },
+    {
+      "name": "lenient_issubclass",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "lenient_issubclass"
+    },
+    {
+      "name": "Default",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "Default"
+    },
+    {
+      "name": "DefaultPlaceholder",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "DefaultPlaceholder"
+    },
+    {
+      "name": "Dependant",
+      "sourceModule": "fastapi.dependencies.models",
+      "sourceSymbol": "Dependant"
+    },
+    {
+      "name": "_should_embed_body_fields",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "_should_embed_body_fields"
+    },
+    {
+      "name": "get_body_field",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_body_field"
+    },
+    {
+      "name": "get_dependant",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_dependant"
+    },
+    {
+      "name": "get_flat_dependant",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_flat_dependant"
+    },
+    {
+      "name": "get_parameterless_sub_dependant",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_parameterless_sub_dependant"
+    },
+    {
+      "name": "get_typed_return_annotation",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "get_typed_return_annotation"
+    },
+    {
+      "name": "solve_dependencies",
+      "sourceModule": "fastapi.dependencies.utils",
+      "sourceSymbol": "solve_dependencies"
+    },
+    {
+      "name": "jsonable_encoder",
+      "sourceModule": "fastapi.encoders",
+      "sourceSymbol": "jsonable_encoder"
+    },
+    {
+      "name": "EndpointContext",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "EndpointContext"
+    },
+    {
+      "name": "FastAPIError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "FastAPIError"
+    },
+    {
+      "name": "PydanticV1NotSupportedError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "PydanticV1NotSupportedError"
+    },
+    {
+      "name": "RequestValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "RequestValidationError"
+    },
+    {
+      "name": "ResponseValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "ResponseValidationError"
+    },
+    {
+      "name": "WebSocketRequestValidationError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "WebSocketRequestValidationError"
+    },
+    {
+      "name": "DecoratedCallable",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "DecoratedCallable"
+    },
+    {
+      "name": "IncEx",
+      "sourceModule": "fastapi.types",
+      "sourceSymbol": "IncEx"
+    },
+    {
+      "name": "create_cloned_field",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "create_cloned_field"
+    },
+    {
+      "name": "create_model_field",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "create_model_field"
+    },
+    {
+      "name": "generate_unique_id",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "generate_unique_id"
+    },
+    {
+      "name": "get_value_or_default",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "get_value_or_default"
+    },
+    {
+      "name": "is_body_allowed_for_status_code",
+      "sourceModule": "fastapi.utils",
+      "sourceSymbol": "is_body_allowed_for_status_code"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi",
+      "symbols": [
+        "params"
+      ]
+    },
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "ModelField",
+        "Undefined",
+        "annotation_is_pydantic_v1",
+        "lenient_issubclass"
+      ]
+    },
+    {
+      "module": "fastapi.datastructures",
+      "symbols": [
+        "Default",
+        "DefaultPlaceholder"
+      ]
+    },
+    {
+      "module": "fastapi.dependencies.models",
+      "symbols": [
+        "Dependant"
+      ]
+    },
+    {
+      "module": "fastapi.dependencies.utils",
+      "symbols": [
+        "_should_embed_body_fields",
+        "get_body_field",
+        "get_dependant",
+        "get_flat_dependant",
+        "get_parameterless_sub_dependant",
+        "get_typed_return_annotation",
+        "solve_dependencies"
+      ]
+    },
+    {
+      "module": "fastapi.encoders",
+      "symbols": [
+        "jsonable_encoder"
+      ]
+    },
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "EndpointContext",
+        "FastAPIError",
+        "PydanticV1NotSupportedError",
+        "RequestValidationError",
+        "ResponseValidationError",
+        "WebSocketRequestValidationError"
+      ]
+    },
+    {
+      "module": "fastapi.types",
+      "symbols": [
+        "DecoratedCallable",
+        "IncEx"
+      ]
+    },
+    {
+      "module": "fastapi.utils",
+      "symbols": [
+        "create_cloned_field",
+        "create_model_field",
+        "generate_unique_id",
+        "get_value_or_default",
+        "is_body_allowed_for_status_code"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.routing/APIWebSocketRoute",
+      "name": "APIWebSocketRoute",
+      "bases": [
+        "routing.WebSocketRoute"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.routing/APIRoute",
+      "name": "APIRoute",
+      "bases": [
+        "routing.Route"
+      ],
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.routing/APIRouter",
+      "name": "APIRouter",
+      "bases": [
+        "routing.Router"
+      ],
+      "docstring": "`APIRouter` class, used to group *path operations*, for example to structure\nan app in multiple files. It would then be included in the `FastAPI` app, or\nin another `APIRouter` (ultimately included in the app).\n\nRead more about it in the\n[FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/).\n\n## Example\n\n```python\nfrom fastapi import APIRouter, FastAPI\n\napp = FastAPI()\nrouter = APIRouter()\n\n\n@router.get(\"/users/\", tags=[\"users\"])\nasyn",
+      "internal": false
+    }
+  ],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.routing/request_response",
+      "name": "request_response",
+      "docstring": "Takes a function or coroutine `func(request) -> response`,\nand returns an ASGI application.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/websocket_session",
+      "name": "websocket_session",
+      "docstring": "Takes a coroutine `func(session)`, and returns an ASGI application.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/_merge_lifespan_context",
+      "name": "_merge_lifespan_context",
+      "docstring": "",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/_extract_endpoint_context",
+      "name": "_extract_endpoint_context",
+      "docstring": "Extract endpoint context with caching to avoid repeated file I/O.",
+      "internal": true
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/serialize_response",
+      "name": "serialize_response",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/run_endpoint_function",
+      "name": "run_endpoint_function",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/get_request_handler",
+      "name": "get_request_handler",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.routing/get_websocket_app",
+      "name": "get_websocket_app",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-concurrency",
+  "@type": "Document",
+  "modulePath": "fastapi.concurrency",
+  "outputFilename": "fastapi-concurrency.jsonld",
+  "internal": false,
+  "role": "concurrency",
+  "description": "FastAPI module: fastapi.concurrency",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.concurrency/contextmanager_in_threadpool",
+      "name": "contextmanager_in_threadpool",
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.concurrency/contextmanager_in_threadpool",
+      "name": "contextmanager_in_threadpool",
+      "docstring": "",
+      "internal": false
+    }
+  ]
+}

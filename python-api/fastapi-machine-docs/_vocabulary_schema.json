@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "doc": "https://fastapi-docs.aalang.org/doc#"
+  },
+  "@type": "VocabularySchema",
+  "purpose": "JSON-LD schema for FastAPI machine-readable docs; downstream code-writing agent uses types, properties, and @id patterns to resolve symbols and cross-references.",
+  "fastapiVersion": "0.128.2",
+  "idPatterns": {
+    "document": "fastapi:{outputFilenameWithoutExtension} or file-relative base",
+    "module": "fastapi:module/{modulePath}",
+    "class": "fastapi:class/{modulePath}/{className}",
+    "function": "fastapi:function/{modulePath}/{functionName}",
+    "method": "fastapi:method/{modulePath}/{className}.{methodName}",
+    "exception": "fastapi:exception/{modulePath}/{exceptionName}",
+    "decorator": "fastapi:decorator/{modulePath}/{name}",
+    "alias": "fastapi:alias/{modulePath}/{exportedName}"
+  },
+  "types": {
+    "Document": {
+      "description": "Root of one JSON-LD file (one per Python module)",
+      "properties": ["@context", "@id", "@type", "modulePath", "outputFilename", "internal", "role", "description", "fastapiVersion", "exports", "imports", "reExports"]
+    },
+    "ModuleInfo": {
+      "description": "In-document context so downstream agent can distinguish disambiguated filenames",
+      "properties": ["modulePath", "outputFilename", "internal", "role", "description"]
+    },
+    "Class": {
+      "description": "Python class (API surface or internal)",
+      "properties": ["@id", "name", "bases", "docstring", "methods", "attributes", "decorators", "internal"]
+    },
+    "Function": {
+      "description": "Top-level function",
+      "properties": ["@id", "name", "signature", "params", "returnAnnotation", "docstring", "decorators", "internal"]
+    },
+    "Method": {
+      "description": "Method on a class",
+      "properties": ["@id", "name", "signature", "params", "returnAnnotation", "docstring", "decorators"]
+    },
+    "Parameter": {
+      "description": "Parameter of a function or method",
+      "properties": ["name", "annotation", "default", "kind", "description"]
+    },
+    "Exception": {
+      "description": "Exception class or error type",
+      "properties": ["@id", "name", "bases", "docstring", "internal"]
+    },
+    "Decorator": {
+      "description": "Decorator (e.g. get, post) or dependency marker",
+      "properties": ["@id", "name", "docstring", "params"]
+    },
+    "ReExport": {
+      "description": "Symbol re-exported from this module (e.g. from .applications import FastAPI)",
+      "properties": ["name", "sourceModule", "sourceSymbol"]
+    },
+    "Import": {
+      "description": "Import from another module (for cross-file references)",
+      "properties": ["module", "symbols", "alias"]
+    }
+  },
+  "properties": {
+    "modulePath": { "type": "string", "description": "Python module path, e.g. fastapi.applications" },
+    "outputFilename": { "type": "string", "description": "JSON-LD filename, e.g. fastapi-applications.jsonld" },
+    "internal": { "type": "boolean", "description": "True for private/internal modules (e.g. _compat)" },
+    "role": { "type": "string", "description": "Short role, e.g. routing, security, openapi" },
+    "description": { "type": "string", "description": "One-line description for downstream agent" },
+    "fastapiVersion": { "type": "string", "description": "FastAPI version this doc was generated from" },
+    "exports": { "type": "array", "description": "List of Class, Function, Exception, Decorator, or ReExport" },
+    "imports": { "type": "array", "description": "List of Import for cross-file resolution" },
+    "reExports": { "type": "array", "description": "ReExport entries for public API surface" },
+    "docstring": { "type": "string", "description": "Docstring or summary" },
+    "signature": { "type": "string", "description": "Optional text signature" },
+    "bases": { "type": "array", "description": "Base class @id or names" },
+    "params": { "type": "array", "description": "List of Parameter" },
+    "returnAnnotation": { "type": "string", "description": "Return type annotation" },
+    "sourceModule": { "type": "string", "description": "Module path for re-export" },
+    "sourceSymbol": { "type": "string", "description": "Symbol name in source module" }
+  },
+  "crossFileLinks": {
+    "description": "References use @id that can be resolved to another JSON-LD file by modulePath or outputFilename",
+    "rules": [
+      "Class.bases may be @id to fastapi:class/... in same or other file",
+      "ReExport.sourceModule maps to module path; downstream agent resolves to outputFilename via moduleList",
+      "Import.module maps to module path for dependency graph"
+    ]
+  },
+  "disambiguatedFilenames": {
+    "description": "When two modules would map to same filename, use suffix (e.g. fastapi-dependencies-models.jsonld); each file MUST include modulePath and outputFilename in Document so downstream agent can tell them apart"
+  }
+}

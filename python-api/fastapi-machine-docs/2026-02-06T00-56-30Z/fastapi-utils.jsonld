@@ -1,0 +1,200 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-utils",
+  "@type": "Document",
+  "modulePath": "fastapi.utils",
+  "outputFilename": "fastapi-utils.jsonld",
+  "internal": false,
+  "role": "utils",
+  "description": "FastAPI module: fastapi.utils",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:function/fastapi.utils/is_body_allowed_for_status_code",
+      "name": "is_body_allowed_for_status_code",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/get_path_param_names",
+      "name": "get_path_param_names",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/create_model_field",
+      "name": "create_model_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/create_cloned_field",
+      "name": "create_cloned_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/generate_operation_id_for_path",
+      "name": "generate_operation_id_for_path",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/generate_unique_id",
+      "name": "generate_unique_id",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/deep_dict_update",
+      "name": "deep_dict_update",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/get_value_or_default",
+      "name": "get_value_or_default",
+      "docstring": "Pass items or `DefaultPlaceholder`s by descending priority.\n\nThe first one to _not_ be a `DefaultPlaceholder` will be returned.\n\nOtherwise, the first item (a `DefaultPlaceholder`) will be returned.",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "BaseConfig",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "BaseConfig"
+    },
+    {
+      "name": "ModelField",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "ModelField"
+    },
+    {
+      "name": "PydanticSchemaGenerationError",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "PydanticSchemaGenerationError"
+    },
+    {
+      "name": "Undefined",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "Undefined"
+    },
+    {
+      "name": "UndefinedType",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "UndefinedType"
+    },
+    {
+      "name": "Validator",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "Validator"
+    },
+    {
+      "name": "annotation_is_pydantic_v1",
+      "sourceModule": "fastapi._compat",
+      "sourceSymbol": "annotation_is_pydantic_v1"
+    },
+    {
+      "name": "DefaultPlaceholder",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "DefaultPlaceholder"
+    },
+    {
+      "name": "DefaultType",
+      "sourceModule": "fastapi.datastructures",
+      "sourceSymbol": "DefaultType"
+    },
+    {
+      "name": "FastAPIDeprecationWarning",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "FastAPIDeprecationWarning"
+    },
+    {
+      "name": "PydanticV1NotSupportedError",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "PydanticV1NotSupportedError"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi._compat",
+      "symbols": [
+        "BaseConfig",
+        "ModelField",
+        "PydanticSchemaGenerationError",
+        "Undefined",
+        "UndefinedType",
+        "Validator",
+        "annotation_is_pydantic_v1"
+      ]
+    },
+    {
+      "module": "fastapi.datastructures",
+      "symbols": [
+        "DefaultPlaceholder",
+        "DefaultType"
+      ]
+    },
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "FastAPIDeprecationWarning",
+        "PydanticV1NotSupportedError"
+      ]
+    }
+  ],
+  "classes": [],
+  "functions": [
+    {
+      "@id": "fastapi:function/fastapi.utils/is_body_allowed_for_status_code",
+      "name": "is_body_allowed_for_status_code",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/get_path_param_names",
+      "name": "get_path_param_names",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/create_model_field",
+      "name": "create_model_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/create_cloned_field",
+      "name": "create_cloned_field",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/generate_operation_id_for_path",
+      "name": "generate_operation_id_for_path",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/generate_unique_id",
+      "name": "generate_unique_id",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/deep_dict_update",
+      "name": "deep_dict_update",
+      "docstring": "",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:function/fastapi.utils/get_value_or_default",
+      "name": "get_value_or_default",
+      "docstring": "Pass items or `DefaultPlaceholder`s by descending priority.\n\nThe first one to _not_ be a `DefaultPlaceholder` will be returned.\n\nOtherwise, the first item (a `DefaultPlaceholder`) will be returned.",
+      "internal": false
+    }
+  ]
+}

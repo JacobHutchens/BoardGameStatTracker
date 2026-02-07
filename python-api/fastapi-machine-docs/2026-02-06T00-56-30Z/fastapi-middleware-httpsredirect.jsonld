@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-middleware-httpsredirect",
+  "@type": "Document",
+  "modulePath": "fastapi.middleware.httpsredirect",
+  "outputFilename": "fastapi-middleware-httpsredirect.jsonld",
+  "internal": false,
+  "role": "httpsredirect",
+  "description": "FastAPI module: fastapi.middleware.httpsredirect",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

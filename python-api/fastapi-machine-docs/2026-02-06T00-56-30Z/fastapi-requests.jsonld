@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-requests",
+  "@type": "Document",
+  "modulePath": "fastapi.requests",
+  "outputFilename": "fastapi-requests.jsonld",
+  "internal": false,
+  "role": "requests",
+  "description": "FastAPI module: fastapi.requests",
+  "fastapiVersion": "0.128.2",
+  "exports": [],
+  "reExports": [],
+  "imports": [],
+  "classes": [],
+  "functions": []
+}

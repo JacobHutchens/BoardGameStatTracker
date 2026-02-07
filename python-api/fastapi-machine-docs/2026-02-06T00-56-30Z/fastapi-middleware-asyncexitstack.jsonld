@@ -1,0 +1,35 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-middleware-asyncexitstack",
+  "@type": "Document",
+  "modulePath": "fastapi.middleware.asyncexitstack",
+  "outputFilename": "fastapi-middleware-asyncexitstack.jsonld",
+  "internal": false,
+  "role": "asyncexitstack",
+  "description": "FastAPI module: fastapi.middleware.asyncexitstack",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.middleware.asyncexitstack/AsyncExitStackMiddleware",
+      "name": "AsyncExitStackMiddleware",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "reExports": [],
+  "imports": [],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.middleware.asyncexitstack/AsyncExitStackMiddleware",
+      "name": "AsyncExitStackMiddleware",
+      "bases": [],
+      "docstring": "",
+      "internal": false
+    }
+  ],
+  "functions": []
+}

@@ -1,0 +1,189 @@
+{
+  "@context": {
+    "@vocab": "https://fastapi-docs.aalang.org/",
+    "fastapi": "https://fastapi-docs.aalang.org/"
+  },
+  "@id": "fastapi:fastapi-security-oauth2",
+  "@type": "Document",
+  "modulePath": "fastapi.security.oauth2",
+  "outputFilename": "fastapi-security-oauth2.jsonld",
+  "internal": false,
+  "role": "oauth2",
+  "description": "FastAPI module: fastapi.security.oauth2",
+  "fastapiVersion": "0.128.2",
+  "exports": [
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2PasswordRequestForm",
+      "name": "OAuth2PasswordRequestForm",
+      "bases": [],
+      "docstring": "This is a dependency class to collect the `username` and `password` as form data\nfor an OAuth2 password flow.\n\nThe OAuth2 specification dictates that for a password flow the data should be\ncollected using form data (instead of JSON) and that it should have the specific\nfields `username` and `password`.\n\nAll the initialization parameters are extracted from the request.\n\nRead more about it in the\n[FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/securi",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2PasswordRequestFormStrict",
+      "name": "OAuth2PasswordRequestFormStrict",
+      "bases": [
+        "OAuth2PasswordRequestForm"
+      ],
+      "docstring": "This is a dependency class to collect the `username` and `password` as form data\nfor an OAuth2 password flow.\n\nThe OAuth2 specification dictates that for a password flow the data should be\ncollected using form data (instead of JSON) and that it should have the specific\nfields `username` and `password`.\n\nAll the initialization parameters are extracted from the request.\n\nThe only difference between `OAuth2PasswordRequestFormStrict` and\n`OAuth2PasswordRequestForm` is that `OAuth2PasswordRequestForm",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2",
+      "name": "OAuth2",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "This is the base class for OAuth2 authentication, an instance of it would be used\nas a dependency. All other OAuth2 classes inherit from it and customize it for\neach OAuth2 flow.\n\nYou normally would not create a new class inheriting from it but use one of the\nexisting subclasses, and maybe compose them if you want to support multiple flows.\n\nRead more about it in the\n[FastAPI docs for Security](https://fastapi.tiangolo.com/tutorial/security/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2PasswordBearer",
+      "name": "OAuth2PasswordBearer",
+      "bases": [
+        "OAuth2"
+      ],
+      "docstring": "OAuth2 flow for authentication using a bearer token obtained with a password.\nAn instance of it would be used as a dependency.\n\nRead more about it in the\n[FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2AuthorizationCodeBearer",
+      "name": "OAuth2AuthorizationCodeBearer",
+      "bases": [
+        "OAuth2"
+      ],
+      "docstring": "OAuth2 flow for authentication using a bearer token obtained with an OAuth2 code\nflow. An instance of it would be used as a dependency.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/SecurityScopes",
+      "name": "SecurityScopes",
+      "bases": [],
+      "docstring": "This is a special class that you can define in a parameter in a dependency to\nobtain the OAuth2 scopes required by all the dependencies in the same chain.\n\nThis way, multiple dependencies can have different scopes, even when used in the\nsame *path operation*. And with this, you can access all the scopes required in\nall those dependencies in a single place.\n\nRead more about it in the\n[FastAPI docs for OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).",
+      "internal": false
+    }
+  ],
+  "reExports": [
+    {
+      "name": "HTTPException",
+      "sourceModule": "fastapi.exceptions",
+      "sourceSymbol": "HTTPException"
+    },
+    {
+      "name": "OAuth2Model",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "OAuth2"
+    },
+    {
+      "name": "OAuthFlowsModel",
+      "sourceModule": "fastapi.openapi.models",
+      "sourceSymbol": "OAuthFlows"
+    },
+    {
+      "name": "Form",
+      "sourceModule": "fastapi.param_functions",
+      "sourceSymbol": "Form"
+    },
+    {
+      "name": "SecurityBase",
+      "sourceModule": "fastapi.security.base",
+      "sourceSymbol": "SecurityBase"
+    },
+    {
+      "name": "get_authorization_scheme_param",
+      "sourceModule": "fastapi.security.utils",
+      "sourceSymbol": "get_authorization_scheme_param"
+    }
+  ],
+  "imports": [
+    {
+      "module": "fastapi.exceptions",
+      "symbols": [
+        "HTTPException"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "OAuth2Model"
+      ]
+    },
+    {
+      "module": "fastapi.openapi.models",
+      "symbols": [
+        "OAuthFlowsModel"
+      ]
+    },
+    {
+      "module": "fastapi.param_functions",
+      "symbols": [
+        "Form"
+      ]
+    },
+    {
+      "module": "fastapi.security.base",
+      "symbols": [
+        "SecurityBase"
+      ]
+    },
+    {
+      "module": "fastapi.security.utils",
+      "symbols": [
+        "get_authorization_scheme_param"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2PasswordRequestForm",
+      "name": "OAuth2PasswordRequestForm",
+      "bases": [],
+      "docstring": "This is a dependency class to collect the `username` and `password` as form data\nfor an OAuth2 password flow.\n\nThe OAuth2 specification dictates that for a password flow the data should be\ncollected using form data (instead of JSON) and that it should have the specific\nfields `username` and `password`.\n\nAll the initialization parameters are extracted from the request.\n\nRead more about it in the\n[FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/securi",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2PasswordRequestFormStrict",
+      "name": "OAuth2PasswordRequestFormStrict",
+      "bases": [
+        "OAuth2PasswordRequestForm"
+      ],
+      "docstring": "This is a dependency class to collect the `username` and `password` as form data\nfor an OAuth2 password flow.\n\nThe OAuth2 specification dictates that for a password flow the data should be\ncollected using form data (instead of JSON) and that it should have the specific\nfields `username` and `password`.\n\nAll the initialization parameters are extracted from the request.\n\nThe only difference between `OAuth2PasswordRequestFormStrict` and\n`OAuth2PasswordRequestForm` is that `OAuth2PasswordRequestForm",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2",
+      "name": "OAuth2",
+      "bases": [
+        "SecurityBase"
+      ],
+      "docstring": "This is the base class for OAuth2 authentication, an instance of it would be used\nas a dependency. All other OAuth2 classes inherit from it and customize it for\neach OAuth2 flow.\n\nYou normally would not create a new class inheriting from it but use one of the\nexisting subclasses, and maybe compose them if you want to support multiple flows.\n\nRead more about it in the\n[FastAPI docs for Security](https://fastapi.tiangolo.com/tutorial/security/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2PasswordBearer",
+      "name": "OAuth2PasswordBearer",
+      "bases": [
+        "OAuth2"
+      ],
+      "docstring": "OAuth2 flow for authentication using a bearer token obtained with a password.\nAn instance of it would be used as a dependency.\n\nRead more about it in the\n[FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/OAuth2AuthorizationCodeBearer",
+      "name": "OAuth2AuthorizationCodeBearer",
+      "bases": [
+        "OAuth2"
+      ],
+      "docstring": "OAuth2 flow for authentication using a bearer token obtained with an OAuth2 code\nflow. An instance of it would be used as a dependency.",
+      "internal": false
+    },
+    {
+      "@id": "fastapi:class/fastapi.security.oauth2/SecurityScopes",
+      "name": "SecurityScopes",
+      "bases": [],
+      "docstring": "This is a special class that you can define in a parameter in a dependency to\nobtain the OAuth2 scopes required by all the dependencies in the same chain.\n\nThis way, multiple dependencies can have different scopes, even when used in the\nsame *path operation*. And with this, you can access all the scopes required in\nall those dependencies in a single place.\n\nRead more about it in the\n[FastAPI docs for OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).",
+      "internal": false
+    }
+  ],
+  "functions": []
+}
