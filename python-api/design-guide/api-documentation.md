@@ -1,6 +1,6 @@
 # Board Game Stat Tracker — REST API Documentation
 
-**API name:** The Librarian  
+**API name:** Python REST API 
 **Base URL:** Use version prefix (e.g. `/v1/`).  
 **Client:** Kotlin Android app; future web and iPhone. Real-time live scoring is handled by a separate Elixir/WebSocket service.  
 **Format:** JSON. Send `Accept: application/json`; responses use `Content-Type: application/json` (UTF-8).
