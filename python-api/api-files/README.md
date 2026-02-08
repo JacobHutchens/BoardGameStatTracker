@@ -27,7 +27,7 @@ From the **api-files** directory:
 
 ```bash
 cd python-api/api-files
-uvicorn main:app --reload
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 - API base:     `http://127.0.0.1:8000`

@@ -1,1 +1,3 @@
 AI-Agents/AAlang-Compiler-JsonLDs
+**/*.pyc
+**/.venv
