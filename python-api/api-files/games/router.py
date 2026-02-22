@@ -1,8 +1,8 @@
 """
-Games routes: GET list, GET by id, POST create. 200 = new game, 211 = game already exists.
+Games routes: GET list, GET by id, POST create. 201 + full game on create; 409 on duplicate name (per design guide).
 """
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, status
 from fastapi.responses import JSONResponse
 
 from dependencies import get_current_user_optional, pagination_params
@@ -26,10 +26,6 @@ _stub_games: list[dict] = [
     }
 ]
 _stub_next_id = 2
-
-
-# Status 211 = "game already exists" (per Team Lead clarification)
-HTTP_GAME_ALREADY_EXISTS = 211
 
 
 @router.get("", response_model=GameListResponse)
@@ -62,14 +58,14 @@ def get_game(game_id: int):
     )
 
 
-@router.post("", response_model=GameResponse, status_code=200)
+@router.post("", response_model=GameResponse, status_code=status.HTTP_201_CREATED)
 def create_game(body: GameCreate):
-    """Stub: 200 if new game created, 211 if game with same name already exists (with error details)."""
+    """Stub: 201 + full game if created; 409 if game with same name already exists (per design guide)."""
     global _stub_next_id
     for g in _stub_games:
         if g["gameName"] == body.gameName:
             return JSONResponse(
-                status_code=HTTP_GAME_ALREADY_EXISTS,
+                status_code=status.HTTP_409_CONFLICT,
                 content={
                     "error": {
                         "code": "game_already_exists",

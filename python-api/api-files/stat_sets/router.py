@@ -32,9 +32,19 @@ _stub_stat_sets: list[dict] = [
 _stub_next_id = 2
 
 
+def _known_game_ids() -> set[int]:
+    """Game ids that have stat sets in stub (used to return 404 for unknown games per design)."""
+    return {s["gameId"] for s in _stub_stat_sets}
+
+
 @router.get("", response_model=StatSetListResponse)
 def list_stat_sets(game_id: int):
-    """Stub: return stat sets for the game (404 if game unknown)."""
+    """Stub: return stat sets for the game. 404 if game not found (per design guide)."""
+    if game_id not in _known_game_ids():
+        return JSONResponse(
+            status_code=404,
+            content={"error": {"code": "not_found", "message": "Game not found"}, "details": []},
+        )
     sets = [s for s in _stub_stat_sets if s["gameId"] == game_id]
     return StatSetListResponse(
         statSets=[
@@ -50,7 +60,12 @@ def list_stat_sets(game_id: int):
 
 @router.get("/{stat_set_id}", response_model=StatSetResponse)
 def get_stat_set(game_id: int, stat_set_id: int):
-    """Stub: return one stat set or 404."""
+    """Stub: return one stat set or 404 (game or stat set not found, per design guide)."""
+    if game_id not in _known_game_ids():
+        return JSONResponse(
+            status_code=404,
+            content={"error": {"code": "not_found", "message": "Game not found"}, "details": []},
+        )
     for s in _stub_stat_sets:
         if s["gameId"] == game_id and s["id"] == stat_set_id:
             return StatSetResponse(

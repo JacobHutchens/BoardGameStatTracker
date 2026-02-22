@@ -10,7 +10,7 @@ from typing import Optional
 @pytest.fixture(scope="session")
 def base_url() -> str:
     """Base URL for API requests from BASE_URL environment variable."""
-    url = os.getenv("BASE_URL", "http://localhost:8000/v1")
+    url = os.getenv("BASE_URL", "138.68.225.218:8000/v1")
     if not url.endswith("/"):
         url += "/"
     return url.rstrip("/")

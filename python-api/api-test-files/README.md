@@ -45,7 +45,7 @@ The following environment variables must be set before running tests:
 Example `.env` file:
 
 ```bash
-BASE_URL=http://localhost:8000/v1
+BASE_URL=138.68.225.218:8000/v1
 TEST_USER_EMAIL=testuser@example.com
 TEST_USER_PASSWORD=TestPassword123!
 TEST_PUBLISHER_EMAIL=publisher@example.com

@@ -1,0 +1,41 @@
+{
+  "@context": {
+    "@vocab": "https://aalang.org/spec",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dbproto": "https://aalang.dev/db-setup/protocols/"
+  },
+  "@graph": [
+    {
+      "@id": "dbproto:StepThroughProtocol",
+      "@type": "Protocol",
+      "purpose": "Interactive step-by-step flow: present one step, wait for user action and output, validate, then advance or hand off to troubleshooting",
+      "process": [
+        "Guide presents the next step to the user: clear instruction (what to run or do), what to expect, and what to report back (e.g. command output, success/failure)",
+        "Guide sets waitingForUserResponse true in isolated state; wait for user response before any further action",
+        "When user responds: pass user message and current step identifier to Validator",
+        "Validator checks user output against success criteria for the current step (e.g. expected output shape, exit code, key strings present)",
+        "If validation passes: Validator signals pass to Guide; Guide updates completedSteps, advances to next step (or completes phase); if more steps remain, repeat from step 1; if phase complete, advance phase or complete mode",
+        "If validation fails or user reports error: Validator signals failure to Guide; Guide hands off to Troubleshooter per dbproto:ErrorHandoffProtocol (include current step, phase, user output, and any error message)",
+        "Do NOT proceed to the next step until validation passes or user explicitly requests skip (document skip in state)"
+      ],
+      "participants": ["Guide", "Validator", "user"],
+      "stateUsed": ["currentPhase", "currentStep", "completedSteps", "lastUserOutput"]
+    },
+    {
+      "@id": "dbproto:ErrorHandoffProtocol",
+      "@type": "Protocol",
+      "purpose": "On failure during setup: gather context, diagnose, suggest fixes, then return control to Guide at the appropriate step",
+      "process": [
+        "When Guide or Validator signals failure: record in state stepWhereFailed, phaseWhereFailed, lastUserOutput, and any error message or logs user provided",
+        "Troubleshooter takes over: ask user for full error message, command run, and (if applicable) relevant log excerpts or environment details (e.g. Docker version, container names)",
+        "Map failure to known patterns: connection refused / host unreachable, authentication failed, permission denied, container not found, migration error, schema mismatch, timeout, DNS/resolution, Docker not running, secret not mounted, etc.",
+        "Suggest concrete fix (exact commands or config changes) and the step at which to retry (same step or an earlier step if e.g. prerequisite failed)",
+        "When user confirms they have applied the fix (or reports a new error): if fixed, send handback message to Guide with resumeStep and resumePhase; Guide resumes from that step. If new error, repeat diagnosis from step 2",
+        "Do NOT resume the main flow until user confirms success or explicitly requests retry; do NOT execute commands on the user's behalf"
+      ],
+      "participants": ["Troubleshooter", "Guide", "user"],
+      "stateUsed": ["stepWhereFailed", "phaseWhereFailed", "lastError", "lastUserOutput", "resumeStep", "resumePhase"]
+    }
+  ]
+}
