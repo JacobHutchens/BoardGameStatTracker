@@ -45,7 +45,7 @@
     "details": []
   },
   "resources": [
-    { "@id": "bgt:Auth", "path": "/auth", "operations": ["login", "register", "publisherLogin", "refresh", "forgotPassword", "logout"] },
+    { "@id": "bgt:Auth", "path": "/auth", "operations": ["login", "register", "publisherLogin", "refresh", "forgotPassword", "resetPassword", "logout"] },
     { "@id": "bgt:Scopes", "path": "/scopes", "readOnly": true },
     { "@id": "bgt:DataTypes", "path": "/data-types", "readOnly": true },
     { "@id": "bgt:Games", "path": "/games", "memberPath": "/games/{gameId}" },
@@ -92,7 +92,7 @@
       "method": "POST",
       "path": "/auth/refresh",
       "requestBody": { "refreshToken": "string" },
-      "response": { "accessToken": "string", "expiresIn": "number" },
+      "response": { "accessToken": "string", "expiresIn": "number", "refreshToken": "optional string (when rotating)" },
       "statusCodes": [200, 401]
     },
     {
@@ -100,6 +100,13 @@
       "path": "/auth/forgot-password",
       "requestBody": { "email": "string" },
       "statusCodes": [200]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/reset-password",
+      "requestBody": { "token": "string", "newPassword": "string" },
+      "response": { "message": "string" },
+      "statusCodes": [200, 400, 422]
     },
     {
       "method": "POST",
@@ -133,7 +140,7 @@
     {
       "method": "GET",
       "path": "/games/{gameId}",
-      "response": "Game with statSets summary and my stats",
+      "response": "Game (full details; optional playCount, lastPlayedAt)",
       "statusCodes": [200, 404]
     },
     {
@@ -218,7 +225,7 @@
     {
       "method": "PATCH",
       "path": "/users/me",
-      "requestBody": { "username": "string", "email": "string", "bio": "string", "avatarUrl": "string" },
+      "requestBody": { "username": "string", "email": "string", "bio": "string", "avatarUrl": "string", "time_zone": "string or null (IANA timezone; null to clear)" },
       "response": "User",
       "statusCodes": [200, 400, 401, 409, 422]
     },
@@ -336,7 +343,7 @@
     "StatSet": { "id": "number", "gameId": "number", "setName": "string", "userId": "number", "stats": [{ "id": "number", "statName": "string", "description": "string", "dataTypeId": "number", "scopeId": "number" }] },
     "Session": { "id": "number", "sessionKey": "string", "gameId": "number", "game": "object", "statSetId": "number", "statSet": "object", "timeStarted": "string", "timeEnded": "string?", "currentRound": "number?", "visibility": "string", "players": [], "trackedStats": [] },
     "SessionInvite": { "id": "number", "sessionId": "number", "invitedAt": "string", "session": "object" },
-    "UserMe": { "id": "number", "username": "string", "email": "string", "bio": "string?", "avatarUrl": "string?", "designer": "boolean", "sessionQuota": { "sessionsUsedThisWeek": "number", "sessionsLimitPerWeek": "number?" }, "defaultSessionVisibility": "string", "quickStats": "object?" },
+    "UserMe": { "id": "number", "username": "string", "email": "string", "bio": "string?", "avatarUrl": "string?", "designer": "boolean", "sessionQuota": { "sessionsUsedThisWeek": "number", "sessionsLimitPerWeek": "number?" }, "defaultSessionVisibility": "string", "time_zone": "string?", "quickStats": "object?" },
     "UserPublic": { "id": "number", "username": "string", "avatarUrl": "string?", "bio": "string?", "designer": "boolean", "statsSummary": "object?" }
   },
   "security": {
@@ -344,6 +351,7 @@
     "cors": "configure for Kotlin and web",
     "rateLimiting": "recommended for auth and export",
     "noPasswordsInResponses": true,
+    "passwordRules": "min 8 characters, at least 1 uppercase, 1 number, 1 special character; applies to register, reset-password, and any future set; invalid 422",
     "contentNegotiation": "Accept: application/json; Content-Type: application/json; charset=utf-8"
   },
   "growability": {

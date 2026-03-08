@@ -20,6 +20,7 @@ class UserMeResponse(BaseModel):
     designer: bool
     sessionQuota: SessionQuota
     defaultSessionVisibility: str = "public"
+    time_zone: str | None = None  # optional IANA timezone (per design doc)
     quickStats: dict[str, Any] | None = None
 
 
@@ -28,6 +29,7 @@ class UserMeUpdate(BaseModel):
     email: str | None = None
     bio: str | None = None
     avatarUrl: str | None = None
+    time_zone: str | None = None  # IANA timezone e.g. America/Los_Angeles; null or "" to clear
 
 
 class UserPublicResponse(BaseModel):

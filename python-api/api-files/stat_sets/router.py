@@ -1,11 +1,16 @@
 """
-Stat sets routes: GET list, GET by id, POST create. Mounted at /v1/games/{game_id}/stat-sets.
+Stat sets routes: GET list, GET by id, POST create.
+Mounted at /v1/games/{game_id}/stat-sets. DB-backed; 404 if game or stat set missing.
 """
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from fastapi.responses import JSONResponse
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from dependencies import get_current_user_optional
+from database import get_session
+from db_models import Game, GameTrackedStatSet, GameTrackedStat
+from dependencies import get_current_user
 from stat_sets.schemas import (
     StatSetCreate,
     StatSetCreateStat,
@@ -17,41 +22,60 @@ from stat_sets.schemas import (
 
 router = APIRouter()
 
-# Stub store per game_id
-_stub_stat_sets: list[dict] = [
-    {
-        "id": 1,
-        "gameId": 1,
-        "setName": "Default Set",
-        "userId": 1,
-        "stats": [
-            {"id": 1, "statName": "player_won", "description": "Player won", "dataTypeId": 3, "scopeId": 1},
-        ],
-    }
-]
-_stub_next_id = 2
+
+def _error_body(code: str, message: str, details: list | None = None) -> dict:
+    return {"error": {"code": code, "message": message}, "details": details or []}
 
 
-def _known_game_ids() -> set[int]:
-    """Game ids that have stat sets in stub (used to return 404 for unknown games per design)."""
-    return {s["gameId"] for s in _stub_stat_sets}
+async def _ensure_game_exists(session: AsyncSession, game_id: int) -> bool:
+    """Return True if game exists."""
+    game = await session.get(Game, game_id)
+    return game is not None
 
 
 @router.get("", response_model=StatSetListResponse)
-def list_stat_sets(game_id: int):
-    """Stub: return stat sets for the game. 404 if game not found (per design guide)."""
-    if game_id not in _known_game_ids():
+async def list_stat_sets(
+    game_id: int,
+    session: AsyncSession = Depends(get_session),
+):
+    """List stat sets for the game. 404 if game not found."""
+    if not await _ensure_game_exists(session, game_id):
         return JSONResponse(
             status_code=404,
-            content={"error": {"code": "not_found", "message": "Game not found"}, "details": []},
+            content=_error_body("not_found", "Game not found"),
         )
-    sets = [s for s in _stub_stat_sets if s["gameId"] == game_id]
+
+    stmt = select(GameTrackedStatSet).where(GameTrackedStatSet.game_id == game_id)
+    result = await session.execute(stmt)
+    sets = result.scalars().all()
+
+    if not sets:
+        return StatSetListResponse(statSets=[])
+
+    set_ids = [s.id for s in sets]
+    stmt_stats = select(GameTrackedStat).where(
+        GameTrackedStat.game_tracked_stat_set_id.in_(set_ids)
+    )
+    result_stats = await session.execute(stmt_stats)
+    stats_list = result_stats.scalars().all()
+
+    stats_by_set: dict[int, list[GameTrackedStat]] = {}
+    for s in stats_list:
+        stats_by_set.setdefault(s.game_tracked_stat_set_id, []).append(s)
+
     return StatSetListResponse(
         statSets=[
             StatSetListItem(
-                id=s["id"],
-                setName=s["setName"],
-                stats=[{"statName": st["statName"], "dataTypeId": st["dataTypeId"], "scopeId": st["scopeId"]} for st in s["stats"]],
+                id=s.id,
+                setName=s.set_name,
+                stats=[
+                    {
+                        "statName": st.stat_name,
+                        "dataTypeId": st.data_type_id,
+                        "scopeId": st.scope_id,
+                    }
+                    for st in stats_by_set.get(s.id, [])
+                ],
             )
             for s in sets
         ]
@@ -59,57 +83,145 @@ def list_stat_sets(game_id: int):
 
 
 @router.get("/{stat_set_id}", response_model=StatSetResponse)
-def get_stat_set(game_id: int, stat_set_id: int):
-    """Stub: return one stat set or 404 (game or stat set not found, per design guide)."""
-    if game_id not in _known_game_ids():
+async def get_stat_set(
+    game_id: int,
+    stat_set_id: int,
+    session: AsyncSession = Depends(get_session),
+):
+    """Stat set details. 404 if game or stat set not found."""
+    if not await _ensure_game_exists(session, game_id):
         return JSONResponse(
             status_code=404,
-            content={"error": {"code": "not_found", "message": "Game not found"}, "details": []},
+            content=_error_body("not_found", "Game not found"),
         )
-    for s in _stub_stat_sets:
-        if s["gameId"] == game_id and s["id"] == stat_set_id:
-            return StatSetResponse(
-                id=s["id"],
-                gameId=s["gameId"],
-                setName=s["setName"],
-                userId=s["userId"],
-                stats=[StatDefinition(**st) for st in s["stats"]],
+
+    stmt = select(GameTrackedStatSet).where(
+        GameTrackedStatSet.game_id == game_id,
+        GameTrackedStatSet.id == stat_set_id,
+    )
+    result = await session.execute(stmt)
+    stat_set = result.scalars().first()
+    if not stat_set:
+        return JSONResponse(
+            status_code=404,
+            content=_error_body("not_found", "Stat set not found"),
+        )
+
+    stmt_stats = select(GameTrackedStat).where(
+        GameTrackedStat.game_tracked_stat_set_id == stat_set_id
+    )
+    result_stats = await session.execute(stmt_stats)
+    stats = result_stats.scalars().all()
+
+    return StatSetResponse(
+        id=stat_set.id,
+        gameId=stat_set.game_id,
+        setName=stat_set.set_name,
+        userId=stat_set.user_id,
+        stats=[
+            StatDefinition(
+                id=st.id,
+                statName=st.stat_name,
+                description=st.description or "",
+                dataTypeId=st.data_type_id,
+                scopeId=st.scope_id,
             )
-    return JSONResponse(
-        status_code=404,
-        content={"error": {"code": "not_found", "message": "Stat set not found"}, "details": []},
+            for st in stats
+        ],
     )
 
 
-@router.post("", response_model=StatSetResponse, status_code=201)
-def create_stat_set(game_id: int, body: StatSetCreate):
-    """Stub: create stat set (optionally copy from sourceStatSetId)."""
-    global _stub_next_id
-    stats = []
+@router.post("", response_model=StatSetResponse, status_code=status.HTTP_201_CREATED)
+async def create_stat_set(
+    game_id: int,
+    body: StatSetCreate,
+    session: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user),
+):
+    """Create stat set (optionally copy from sourceStatSetId). 404 if game or source not found."""
+    if not await _ensure_game_exists(session, game_id):
+        return JSONResponse(
+            status_code=404,
+            content=_error_body("not_found", "Game not found"),
+        )
+
+    user_id = current_user["id"]
+    stats_to_create: list[tuple[str, str, int, int]] = []  # (stat_name, description, data_type_id, scope_id)
+
     if body.sourceStatSetId is not None:
-        for s in _stub_stat_sets:
-            if s["id"] == body.sourceStatSetId and s["gameId"] == game_id:
-                stats = [{**st, "id": _stub_next_id + i} for i, st in enumerate(s["stats"])]
-                break
+        stmt = select(GameTrackedStatSet).where(
+            GameTrackedStatSet.id == body.sourceStatSetId,
+            GameTrackedStatSet.game_id == game_id,
+        )
+        result = await session.execute(stmt)
+        source_set = result.scalars().first()
+        if not source_set:
+            return JSONResponse(
+                status_code=404,
+                content=_error_body("not_found", "Stat set not found"),
+            )
+        stmt_stats = select(GameTrackedStat).where(
+            GameTrackedStat.game_tracked_stat_set_id == source_set.id
+        )
+        result_stats = await session.execute(stmt_stats)
+        for st in result_stats.scalars().all():
+            stats_to_create.append(
+                (st.stat_name, st.description or "", st.data_type_id, st.scope_id)
+            )
     elif body.stats:
-        stats = [
-            {"id": _stub_next_id + i, "statName": st.statName, "description": st.description, "dataTypeId": st.dataTypeId, "scopeId": st.scopeId}
-            for i, st in enumerate(body.stats)
-        ]
-    new_id = _stub_next_id
-    _stub_next_id += 1
-    new_set = {
-        "id": new_id,
-        "gameId": game_id,
-        "setName": body.setName,
-        "userId": 1,
-        "stats": stats if stats else [{"id": new_id, "statName": "score", "description": "", "dataTypeId": 1, "scopeId": 1}],
-    }
-    _stub_stat_sets.append(new_set)
+        for st in body.stats:
+            stats_to_create.append(
+                (st.statName, st.description or "", st.dataTypeId, st.scopeId)
+            )
+
+    if not stats_to_create:
+        stats_to_create = [("score", "", 1, 1)]
+
+    new_set = GameTrackedStatSet(
+        game_id=game_id,
+        user_id=user_id,
+        set_name=body.setName,
+    )
+    session.add(new_set)
+    await session.flush()
+
+    for stat_name, description, data_type_id, scope_id in stats_to_create:
+        session.add(
+            GameTrackedStat(
+                game_tracked_stat_set_id=new_set.id,
+                stat_name=stat_name,
+                description=description or None,
+                data_type_id=data_type_id,
+                scope_id=scope_id,
+            )
+        )
+
+    try:
+        await session.commit()
+        await session.refresh(new_set)
+    except Exception:
+        await session.rollback()
+        raise
+
+    stmt_stats = select(GameTrackedStat).where(
+        GameTrackedStat.game_tracked_stat_set_id == new_set.id
+    )
+    result_stats = await session.execute(stmt_stats)
+    stats = result_stats.scalars().all()
+
     return StatSetResponse(
-        id=new_set["id"],
-        gameId=new_set["gameId"],
-        setName=new_set["setName"],
-        userId=new_set["userId"],
-        stats=[StatDefinition(**st) for st in new_set["stats"]],
+        id=new_set.id,
+        gameId=new_set.game_id,
+        setName=new_set.set_name,
+        userId=new_set.user_id,
+        stats=[
+            StatDefinition(
+                id=st.id,
+                statName=st.stat_name,
+                description=st.description or "",
+                dataTypeId=st.data_type_id,
+                scopeId=st.scope_id,
+            )
+            for st in stats
+        ],
     )

@@ -29,6 +29,11 @@ class LogoutRequest(BaseModel):
     refreshToken: str | None = None
 
 
+class ResetPasswordRequest(BaseModel):
+    token: str
+    newPassword: str
+
+
 # ----- User summary (in login/register response) -----
 class UserSummary(BaseModel):
     id: int
@@ -68,7 +73,12 @@ class PublisherAuthResponse(BaseModel):
 class RefreshResponse(BaseModel):
     accessToken: str
     expiresIn: int
+    refreshToken: str | None = None  # optional; returned when rotating refresh token
 
 
 class ForgotPasswordResponse(BaseModel):
     message: str = "If an account exists, you will receive reset instructions."
+
+
+class ResetPasswordResponse(BaseModel):
+    message: str = "Password has been reset successfully."

@@ -3,12 +3,16 @@ The Librarian — Board Game Stat Tracker REST API.
 All routes under /v1. Stub auth; central exception handlers; response shape per api-documentation.
 """
 import sys
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 # Ensure api-files directory is on path so subpackages can import dependencies, schemas_common
 _sys_path = str(Path(__file__).resolve().parent)
 if _sys_path not in sys.path:
     sys.path.insert(0, _sys_path)
+
+from dotenv import load_dotenv
+load_dotenv()
 
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
@@ -29,12 +33,33 @@ from social.router import router as social_router
 from feed.router import router as feed_router
 from export.router import router as export_router
 from publishers.router import router as publishers_router
+from database import check_db_connection, engine as db_engine
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    await db_engine.dispose()
+
 
 app = FastAPI(
     title="The Librarian",
-    description="Board Game Stat Tracker REST API — stub implementation with mock data.",
+    description="Board Game Stat Tracker REST API — database-backed with JWT auth.",
     version="1.0",
+    lifespan=lifespan,
 )
+
+
+@app.get("/health")
+async def health():
+    """Health check: returns 200 if the API and database are reachable."""
+    db_ok = await check_db_connection()
+    if db_ok:
+        return {"status": "ok", "database": "connected"}
+    return JSONResponse(
+        status_code=503,
+        content={"status": "degraded", "database": "disconnected"},
+    )
 
 
 def _error_body(code: str, message: str, details: list | None = None) -> dict:

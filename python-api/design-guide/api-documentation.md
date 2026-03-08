@@ -30,11 +30,15 @@ All authenticated requests use: `Authorization: Bearer <accessToken>`. Publisher
 | POST | `/auth/login` | User login | `{ "emailOrUsername", "password" }` | `{ "accessToken", "refreshToken", "expiresIn", "user": { "id", "username", "email", "designer" } }` | 200, 401 |
 | POST | `/auth/register` | User registration | `{ "username", "email", "password" }` | Same shape as login (201 + tokens) | 201, 400, 409 |
 | POST | `/auth/publisher/login` | Publisher login (e.g. for future web) | `{ "emailOrUsername", "password" }` or publisher-specific | `{ "accessToken", "refreshToken", "expiresIn", "publisher": { "id", "name", ... } }` | 200, 401 |
-| POST | `/auth/refresh` | Refresh access token | `{ "refreshToken" }` | `{ "accessToken", "expiresIn" }` | 200, 401 |
-| POST | `/auth/forgot-password` | Request password reset | `{ "email" }` | 200 + message (no leak if email missing) | 200 |
+| POST | `/auth/refresh` | Refresh access token (DB lookup; rotates token) | `{ "refreshToken" }` | `{ "accessToken", "expiresIn", optional "refreshToken" }` | 200, 401 |
+| POST | `/auth/forgot-password` | Request password reset (sends email with link) | `{ "email" }` | 200 + message (no leak if email missing) | 200 |
+| POST | `/auth/reset-password` | Set new password using token from email | `{ "token", "newPassword" }` | 200 + message | 200, 400, 422 |
 | POST | `/auth/logout` | Invalidate refresh token (optional) | — or `{ "refreshToken" }` | — | 204 |
 
 - **409** on register: duplicate username or email.
+- **Password rules:** All passwords (register, reset-password, any future set): minimum 8 characters, at least 1 uppercase letter, 1 number, 1 special character; invalid 422 with validation error. Reset-password: 400 for invalid/expired/used token.
+- **Password change:** User requests reset via `POST /auth/forgot-password` with `{ "email" }`; server sends email with a one-time link. User submits the token and new password to `POST /auth/reset-password` with `{ "token", "newPassword" }`.
+- **Refresh:** Server may return an optional `refreshToken` in the response; when present, the client should use it for subsequent refresh calls (previous refresh token is invalidated).
 - **Username availability:** `GET /users/check-username?username=<value>` → 200 `{ "available": true|false }`.
 
 ---
@@ -55,7 +59,7 @@ Auth may be optional for onboarding; otherwise same as rest of API.
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
 | GET | `/games` | List games | Query: `filter=my|all|recent`, `search`, `page`, `limit` | `{ "games": [...], "total", "page" }` | 200 |
-| GET | `/games/{gameId}` | Game details | — | Game + stat sets summary + my stats (when authenticated) | 200, 404 |
+| GET | `/games/{gameId}` | Game details | — | Full game (id, gameName, description, player counts, canWin, createdAt; optional playCount, lastPlayedAt when available) | 200, 404 |
 | POST | `/games` | Create game | Body: `{ "gameName", "description", "minPlayerCount", "maxPlayerCount", "canWin" }` | 201 + full game | 201, 400, 409 |
 
 - **Filter:** `my` = user has played/created; `all` = all games; `recent` = e.g. last 30 days.
@@ -96,7 +100,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 - **403 on POST /sessions:** User at weekly session limit (designers exempt).
 - **Join:** Idempotent — if caller already in session, return 200 with current session. 404 = session not found; 409 = full, already ended, or other conflict.
 - **Session invites:** Returns invites where current user is the invitee. `pending=true` (default) filters to invites for active sessions where user hasn't joined yet; `pending=false` returns all invites (including for ended sessions or already joined). Each invite includes: `{ "id", "sessionId", "invitedAt", "session": { ... } }` with session details (game, creator, timeStarted, etc.).
-- **Session quota** is included in `GET /users/me` as `sessionQuota: { "sessionsUsedThisWeek", "sessionsLimitPerWeek" }` (designers: limit null or unlimited sentinel). Optional: `GET /users/me/session-quota` for lightweight polling.
+- **Session quota** is included in `GET /users/me` as `sessionQuota: { "sessionsUsedThisWeek", "sessionsLimitPerWeek" }` (designers: limit null or unlimited sentinel). A separate `GET /users/me/session-quota` endpoint is not implemented; use `GET /users/me` for quota.
 
 ---
 
@@ -105,11 +109,12 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
 | GET | `/users/me` | Current user profile + quota | — | User + `sessionQuota`; optional `quickStats` (totalGames, winRate, sessionsThisWeek, favoriteGame) | 200, 401 |
-| PATCH | `/users/me` | Update profile | Body: partial `{ "username", "email", "bio", "avatarUrl" }` | 200 + user | 200, 400, 401, 409, 422 |
+| PATCH | `/users/me` | Update profile | Body: partial `{ "username", "email", "bio", "avatarUrl", "time_zone" }` | 200 + user | 200, 400, 401, 409, 422 |
 | GET | `/users/{userId}` | Other user profile (public) | — | Public fields: username, bio, avatar, designer, stats summary | 200, 404 |
 | GET | `/users/check-username?username=<value>` | Username availability | — | `{ "available": true|false }` | 200 |
 
 - **409** on PATCH: duplicate username or email.
+- **time_zone:** Optional IANA timezone (e.g. `America/Los_Angeles`) for session-quota week calculation. Send `null` or omit to leave unchanged; send `""` or `null` to clear.
 - Check username before register or edit via `/users/check-username`.
 
 ---
@@ -181,7 +186,7 @@ Requires publisher authentication. Multiple user accounts can be linked to one p
 - **Stat set:** `id`, `gameId`, `setName`, `userId` (creator), `stats`: array of `{ id, statName, description, dataTypeId, scopeId }`.
 - **Session:** `id`, `sessionKey`, `gameId`, `game` (summary), `statSetId`, `statSet` (summary), `timeStarted`, `timeEnded`, `currentRound`, `visibility`, `players`: array of `{ sessionPlayerId, userId, playerName, isSpectator, won }`, `trackedStats`, optional stat values.
 - **Session invite:** `id`, `sessionId`, `invitedAt`, `session` (summary with game, creator, timeStarted, etc.).
-- **User (me):** `id`, `username`, `email`, `bio`, `avatarUrl`, `designer`, `sessionQuota`, `defaultSessionVisibility`; optional `quickStats`.
+- **User (me):** `id`, `username`, `email`, `bio`, `avatarUrl`, `designer`, `sessionQuota`, `defaultSessionVisibility`; optional `time_zone` (IANA, for session-limit week); optional `quickStats`.
 - **User (public):** `id`, `username`, `avatarUrl`, `bio`, `designer`, optional stats summary.
 - **Error body:** `{ "error": { "code", "message" }, "details": [] }`.
 
