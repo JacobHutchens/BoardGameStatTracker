@@ -10,8 +10,9 @@ from sqlalchemy import select, func, or_, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_session
-from db_models import Session, Follower, User, Game
+from db_models import Session, SessionPlayer, Follower, User, Game
 from dependencies import get_current_user, pagination_params
+from session_win_helpers import get_win_tracked_stat_id, get_player_won_value
 from schemas_common import PaginationParams
 from feed.schemas import FeedResponse, FeedSessionItem
 
@@ -75,6 +76,33 @@ async def get_feed(
     games_result = await session.execute(games_stmt)
     games_map = {g.id: g for g in games_result.scalars().all()}
 
+    # Current user's participation and result (won/lost) per session.
+    session_ids = [s.id for s in sessions]
+    sp_stmt = select(SessionPlayer).where(
+        SessionPlayer.session_id.in_(session_ids),
+        SessionPlayer.user_id == user_id,
+    )
+    sp_result = await session.execute(sp_stmt)
+    session_id_to_player = {sp.session_id: sp for sp in sp_result.scalars().all()}
+
+    result_by_session = {}
+    for sess in sessions:
+        sp = session_id_to_player.get(sess.id)
+        if sp is None:
+            result_by_session[sess.id] = "other"
+            continue
+        win_stat_id = await get_win_tracked_stat_id(session, sess.id)
+        if win_stat_id is None:
+            result_by_session[sess.id] = "other"
+            continue
+        won_val = await get_player_won_value(session, sp.id, win_stat_id)
+        if won_val is True:
+            result_by_session[sess.id] = "won"
+        elif won_val is False:
+            result_by_session[sess.id] = "lost"
+        else:
+            result_by_session[sess.id] = "other"
+
     items = []
     for sess in sessions:
         creator = users_map.get(sess.creator_user_id)
@@ -85,7 +113,7 @@ async def get_feed(
                 id=sess.id,
                 game={"id": game.id, "gameName": game.game_name} if game else {},
                 user={"id": creator.id, "username": creator.username} if creator else {},
-                result=None,
+                result=result_by_session.get(sess.id, "other"),
                 playedAt=_dt_iso(sess.time_started),
                 visibility=vis or "public",
             )

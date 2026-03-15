@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@vocab": "https://aalang.org/api-qa#"
+  },
+  "@id": "qa:BoardGameStatTrackerAPI_QAReport",
+  "@type": "QAReport",
+  "summary": {
+    "overallAssessment": "Implementation is largely aligned with the documented REST API. Deep analysis identified documentation gaps, two concrete behavior gaps (quickStats and feed result), and a few implementation areas that can be strengthened for clarity and security.",
+    "counts": {
+      "compliant": 0,
+      "knownDeviation": 0,
+      "confirmedViolation": 2,
+      "missingImplementation": 2,
+      "ambiguousGuide": 1,
+      "newItemNotInGuide": 0
+    }
+  },
+  "entries": [
+    {
+      "@type": "QAEntry",
+      "file": "python-api/api-files/main.py",
+      "location": "GET /health handler",
+      "ruleRef": "api-documentation.md §1–§15 (no explicit health endpoint documented)",
+      "category": "ambiguousGuide",
+      "status": "final",
+      "requiresUserDecision": false,
+      "notes": "The API exposes a GET /health endpoint for operational health checks that is not described in the design guide or formal API specification. You chose to keep this endpoint and add it to the documentation.",
+      "suggestedFix": "Add a short Health/Monitoring section to the API design documentation that defines GET /health, its success and degraded response shapes, and clarifies that it is an operational endpoint not intended for general client use."
+    },
+    {
+      "@type": "QAEntry",
+      "file": "python-api/api-files/users/router.py",
+      "location": "GET /v1/users/me response (quickStats field)",
+      "ruleRef": "api-documentation.md §7 Users and profile (quickStats field)",
+      "category": "confirmedViolation",
+      "status": "final",
+      "requiresUserDecision": false,
+      "notes": "The design guide specifies that GET /users/me may include an optional quickStats object (e.g. totalGames, winRate, sessionsThisWeek, favoriteGame), but the current implementation always returns quickStats as null and does not populate these summary statistics.",
+      "suggestedFix": "Derive quickStats from existing per-game and per-session statistics so that GET /users/me returns a populated quickStats object for active users. At minimum, compute totalGames, overall winRate, sessions played in the current week, and a reasonable favoriteGame based on play frequency."
+    },
+    {
+      "@type": "QAEntry",
+      "file": "python-api/api-files/feed/router.py",
+      "location": "GET /v1/feed response (result field)",
+      "ruleRef": "api-documentation.md §10 Following feed (result derived from win/loss)",
+      "category": "confirmedViolation",
+      "status": "final",
+      "requiresUserDecision": false,
+      "notes": "The design guide states that the following feed should include a result field derived from per-player win/loss stats (e.g. won/lost). The current implementation returns result=None for all feed items and does not compute or populate this value from tracked stats or cached aggregates.",
+      "suggestedFix": "Populate the result field for each feed session item by deriving a simple won/lost/other value from existing stats, such as the current user’s win/loss outcome or a summarized result description, consistent with how win/loss is derived elsewhere in the system."
+    },
+    {
+      "@type": "QAEntry",
+      "file": "python-api/api-files/sessions/router.py",
+      "location": "GET /v1/sessions/{sessionId} and GET /v1/sessions list (players.won, trackedStats)",
+      "ruleRef": "api-documentation.md §6 Sessions (won/lost per player and tracked stats in session details)",
+      "category": "missingImplementation",
+      "status": "final",
+      "requiresUserDecision": false,
+      "notes": "Session detail responses are expected to include tracked stats and derived won/lost information per player. The current implementation returns players with won=None and always returns an empty trackedStats list, even though underlying PlayerStatValue and TableStatValue data exist in the database.",
+      "suggestedFix": "Extend the session detail (and list) responses to include a meaningful trackedStats projection and a derived won flag per player, based on the per-player boolean win stat (e.g. player_won) defined in the design. Keep the projection concise and focused on what the Kotlin app and future clients actually need."
+    },
+    {
+      "@type": "QAEntry",
+      "file": "python-api/api-files/database.py",
+      "location": "DATABASE_URL default value",
+      "ruleRef": "api-specification.jsonld security section and general environment-based configuration pattern",
+      "category": "missingImplementation",
+      "status": "final",
+      "requiresUserDecision": false,
+      "notes": "The database module provides a hard-coded default DATABASE_URL that includes concrete credentials. While convenient for local development, this diverges from the otherwise consistent pattern of requiring secrets via environment variables and could encourage unsafe defaults in non-development environments.",
+      "suggestedFix": "Align DATABASE_URL handling with other sensitive configuration: require DATABASE_URL via environment variable for non-test environments, and document a safe local default in setup instructions instead of embedding credentials in code."
+    }
+  ]
+}

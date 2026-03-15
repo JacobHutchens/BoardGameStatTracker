@@ -1,6 +1,6 @@
 """
 Async database engine and session for FastAPI + SQLModel.
-DATABASE_URL must be set (e.g. via .env: mysql+aiomysql://user:pass@host:3306/dbname).
+DATABASE_URL must be set in the environment (e.g. via .env). No default with credentials.
 """
 import os
 from typing import AsyncGenerator
@@ -8,11 +8,12 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy import text
 
-# Load from environment (call dotenv.load_dotenv() in app startup if using .env)
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "mysql+aiomysql://jacob:password@127.0.0.1:3306/BoardGameTracker",
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL or not DATABASE_URL.strip():
+    raise RuntimeError(
+        "DATABASE_URL must be set in the environment. "
+        "For local development, set it in .env (e.g. mysql+aiomysql://user:password@127.0.0.1:3306/BoardGameTracker)."
+    )
 
 engine = create_async_engine(
     DATABASE_URL,

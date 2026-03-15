@@ -9,7 +9,9 @@ Board Game Stat Tracker REST API. Stub implementation with mock data; all routes
 
 ## Setup
 
-1. From the **python-api** directory (parent of `api-files`), create a virtual environment and install dependencies:
+1. **Database:** Set `DATABASE_URL` in the environment (e.g. in a `.env` file in `api-files` or `python-api`). Example for local MySQL: `DATABASE_URL=mysql+aiomysql://user:password@127.0.0.1:3306/BoardGameTracker`. The app does not use a default URL with credentials; you must provide it.
+
+2. From the **python-api** directory (parent of `api-files`), create a virtual environment and install dependencies:
 
    ```bash
    cd python-api
@@ -19,7 +21,7 @@ Board Game Stat Tracker REST API. Stub implementation with mock data; all routes
    pip install -r api-files/requirements.txt
    ```
 
-2. Run the app from the **api-files** directory so that imports resolve correctly.
+3. Run the app from the **api-files** directory so that imports resolve correctly.
 
 ## Run
 

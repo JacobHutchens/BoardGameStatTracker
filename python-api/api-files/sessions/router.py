@@ -18,6 +18,7 @@ from database import get_session
 from db_models import (
     Game,
     GameTrackedStatSet,
+    Scope,
     Session,
     SessionPlayer,
     SessionInvite,
@@ -27,6 +28,7 @@ from db_models import (
     TableStatValue,
 )
 from dependencies import get_current_user, pagination_params
+from session_win_helpers import get_win_tracked_stat_id, get_player_won_value
 from schemas_common import PaginationParams
 from sessions.schemas import (
     SessionCreate,
@@ -108,19 +110,39 @@ async def _build_session_response(
 
     visibility = sess.visibility_override or (creator.default_session_visibility if creator else "public")
 
+    # Load tracked stats for this session and build projection (statName, scope).
+    stmt_st = select(SessionTrackedStat).where(SessionTrackedStat.session_id == sess.id)
+    result_st = await session.execute(stmt_st)
+    tracked_stat_rows = result_st.scalars().all()
+    scope_ids = list({r.scope_id for r in tracked_stat_rows})
+    scope_map = {}
+    if scope_ids:
+        stmt_scope = select(Scope).where(Scope.id.in_(scope_ids))
+        for row in (await session.execute(stmt_scope)).scalars().all():
+            scope_map[row.id] = row.scope or "player"
+    tracked_stats_list = [
+        {"statName": r.stat_name, "scope": scope_map.get(r.scope_id, "player")}
+        for r in tracked_stat_rows
+    ]
+
+    win_tracked_stat_id = await get_win_tracked_stat_id(session, sess.id)
+
     stmt_players = select(SessionPlayer).where(SessionPlayer.session_id == sess.id)
     result_players = await session.execute(stmt_players)
     players_list = result_players.scalars().all()
 
     player_responses = []
     for sp in players_list:
+        won_val = None
+        if win_tracked_stat_id is not None:
+            won_val = await get_player_won_value(session, sp.id, win_tracked_stat_id)
         player_responses.append(
             SessionPlayerSchema(
                 sessionPlayerId=sp.id,
                 userId=sp.user_id,
                 playerName=sp.player_name,
                 isSpectator=bool(sp.is_spectator),
-                won=None,
+                won=won_val,
             )
         )
 
@@ -136,7 +158,7 @@ async def _build_session_response(
         currentRound=sess.current_round,
         visibility=visibility or "public",
         players=player_responses,
-        trackedStats=[],
+        trackedStats=tracked_stats_list,
     )
 
 

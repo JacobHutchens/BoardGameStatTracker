@@ -30,6 +30,7 @@
   ],
   "statusCodes": [
     { "code": 200, "meaning": "OK" },
+    { "code": 503, "meaning": "Service Unavailable (e.g. health check degraded)" },
     { "code": 201, "meaning": "Created" },
     { "code": 204, "meaning": "No Content" },
     { "code": 400, "meaning": "Bad Request (malformed)" },
@@ -45,6 +46,7 @@
     "details": []
   },
   "resources": [
+    { "@id": "bgt:Health", "path": "/health", "description": "Operational health check; not for general client use" },
     { "@id": "bgt:Auth", "path": "/auth", "operations": ["login", "register", "publisherLogin", "refresh", "forgotPassword", "resetPassword", "logout"] },
     { "@id": "bgt:Scopes", "path": "/scopes", "readOnly": true },
     { "@id": "bgt:DataTypes", "path": "/data-types", "readOnly": true },
@@ -67,6 +69,13 @@
     { "@id": "bgt:PublisherAnalytics", "path": "/publishers/me/analytics" }
   ],
   "endpoints": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "response": { "status": "string (ok | degraded)", "database": "string (connected | disconnected)" },
+      "statusCodes": [200, 503],
+      "description": "Operational health; 200 = ok, 503 = degraded (e.g. database disconnected)"
+    },
     {
       "method": "POST",
       "path": "/auth/login",

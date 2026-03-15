@@ -13,7 +13,7 @@ from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_session
-from db_models import User, Session
+from db_models import User, Session, UserGameStatsCache, Game
 from dependencies import get_current_user
 from users.schemas import (
     CheckUsernameResponse,
@@ -76,6 +76,37 @@ def _error_body(code: str, message: str) -> dict:
     return {"error": {"code": code, "message": message}, "details": []}
 
 
+async def _compute_quick_stats(
+    session: AsyncSession, user_id: int, tz_name: str
+) -> dict | None:
+    """Build quickStats from UserGameStatsCache and sessionsThisWeek. Returns None if no stats."""
+    stmt = (
+        select(UserGameStatsCache, Game)
+        .join(Game, UserGameStatsCache.game_id == Game.id)
+        .where(UserGameStatsCache.user_id == user_id)
+    )
+    result = await session.execute(stmt)
+    rows = result.all()
+    if not rows:
+        return None
+    total_games = len(rows)
+    total_played = sum(r[0].total_times_played for r in rows)
+    total_wins = sum((r[0].wins or 0) for r in rows)
+    win_rate = (total_wins / total_played) if total_played > 0 else 0.0
+    sessions_this_week = await _sessions_used_this_week(session, user_id, tz_name)
+    favorite = max(rows, key=lambda r: r[0].total_times_played)
+    favorite_game = {
+        "id": favorite[0].game_id,
+        "gameName": favorite[1].game_name,
+    }
+    return {
+        "totalGames": total_games,
+        "winRate": round(win_rate, 4),
+        "sessionsThisWeek": sessions_this_week,
+        "favoriteGame": favorite_game,
+    }
+
+
 @router.get("/me", response_model=UserMeResponse)
 async def get_me(
     _user: dict = Depends(get_current_user),
@@ -96,6 +127,7 @@ async def get_me(
         sessionsUsedThisWeek=used,
         sessionsLimitPerWeek=limit_val,
     )
+    quick_stats = await _compute_quick_stats(session, db_user.id, tz_name)
 
     return UserMeResponse(
         id=db_user.id,
@@ -107,7 +139,7 @@ async def get_me(
         sessionQuota=session_quota,
         defaultSessionVisibility=db_user.default_session_visibility or "public",
         time_zone=db_user.time_zone,
-        quickStats=None,
+        quickStats=quick_stats,
     )
 
 
@@ -168,6 +200,7 @@ async def update_me(
         sessionsUsedThisWeek=used,
         sessionsLimitPerWeek=limit_val,
     )
+    quick_stats = await _compute_quick_stats(session, db_user.id, tz_name)
 
     return UserMeResponse(
         id=db_user.id,
@@ -179,7 +212,7 @@ async def update_me(
         sessionQuota=session_quota,
         defaultSessionVisibility=db_user.default_session_visibility or "public",
         time_zone=db_user.time_zone,
-        quickStats=None,
+        quickStats=quick_stats,
     )
 
 

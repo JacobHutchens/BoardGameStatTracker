@@ -21,7 +21,21 @@ This API provides authentication, user and publisher management, games, stat set
 
 ---
 
-## 2. Authentication
+## 2. Health and monitoring
+
+Operational health check; not intended for general client use.
+
+| Method | Endpoint | Description | Response | Status codes |
+|--------|----------|-------------|----------|--------------|
+| GET | `/health` | API and database health | Success: `{ "status": "ok", "database": "connected" }`. Degraded: `{ "status": "degraded", "database": "disconnected" }` | 200, 503 |
+
+- **200:** API and database are reachable.
+- **503:** Database is disconnected or unreachable; API may still respond but is degraded.
+- No authentication required. Use for monitoring, load balancer checks, and ops; clients should not rely on this for feature behavior.
+
+---
+
+## 3. Authentication
 
 All authenticated requests use: `Authorization: Bearer <accessToken>`. Publisher tokens are distinct (publisher-scoped).
 
@@ -43,7 +57,7 @@ All authenticated requests use: `Authorization: Bearer <accessToken>`. Publisher
 
 ---
 
-## 3. Reference data
+## 4. Reference data
 
 | Method | Endpoint | Description | Response |
 |--------|----------|-------------|----------|
@@ -54,7 +68,7 @@ Auth may be optional for onboarding; otherwise same as rest of API.
 
 ---
 
-## 4. Games
+## 5. Games
 
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
@@ -68,7 +82,7 @@ Auth may be optional for onboarding; otherwise same as rest of API.
 
 ---
 
-## 5. Stat sets
+## 6. Stat sets
 
 Stat sets are scoped to a game.
 
@@ -82,7 +96,7 @@ Stat sets are scoped to a game.
 
 ---
 
-## 6. Sessions
+## 7. Sessions
 
 Sessions are created and managed via REST; live score updates use the Elixir WebSocket service. Session list is canonical: one endpoint for both active sessions and history.
 
@@ -104,7 +118,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 
 ---
 
-## 7. Users and profile
+## 8. Users and profile
 
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
@@ -119,7 +133,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 
 ---
 
-## 8. User stats
+## 9. User stats
 
 | Method | Endpoint | Description | Response | Status codes |
 |--------|----------|-------------|----------|--------------|
@@ -129,7 +143,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 
 ---
 
-## 9. Social (followers, following, user search)
+## 10. Social (followers, following, user search)
 
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
@@ -144,7 +158,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 
 ---
 
-## 10. Following feed
+## 11. Following feed
 
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
@@ -154,7 +168,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 
 ---
 
-## 11. Export
+## 12. Export
 
 | Method | Endpoint | Description | Request | Response | Status codes |
 |--------|----------|-------------|---------|----------|--------------|
@@ -166,7 +180,7 @@ Sessions are created and managed via REST; live score updates use the Elixir Web
 
 ---
 
-## 12. Publishers
+## 13. Publishers
 
 Requires publisher authentication. Multiple user accounts can be linked to one publisher.
 
@@ -180,7 +194,7 @@ Requires publisher authentication. Multiple user accounts can be linked to one p
 
 ---
 
-## 13. Data shapes (summary)
+## 14. Data shapes (summary)
 
 - **Game:** `id`, `gameName`, `description`, `minPlayerCount`, `maxPlayerCount`, `canWin`, `createdAt`. Optional in context: `playCount`, `lastPlayedAt`.
 - **Stat set:** `id`, `gameId`, `setName`, `userId` (creator), `stats`: array of `{ id, statName, description, dataTypeId, scopeId }`.
@@ -207,7 +221,7 @@ Requires publisher authentication. Multiple user accounts can be linked to one p
 
 ---
 
-## 14. Security
+## 15. Security
 
 - **Authentication:** JWT in `Authorization: Bearer <token>`. Publisher tokens are distinct (publisher scope).
 - **Authorization:** Resource-level (e.g. only session creator/participant can end/delete; only publisher can access `/publishers/me`; only user can PATCH `/users/me`).
@@ -219,7 +233,7 @@ Requires publisher authentication. Multiple user accounts can be linked to one p
 
 ---
 
-## 15. Growability
+## 16. Growability
 
 - **Versioning:** URL prefix (e.g. `/v1/`) for future `/v2/` without breaking clients.
 - **Extensibility:** Optional JSON fields; clients ignore unknown fields. New scopes/data types via DB and existing endpoints.
