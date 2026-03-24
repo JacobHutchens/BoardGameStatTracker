@@ -1,3 +1,12 @@
-AI-Agents/AAlang-Compiler-JsonLDs
+# AI-Agents/AAlang-Compiler-JsonLDs
 **/*.pyc
 **/.venv
+#
+# Kotlin Android app environment (local-only)
+Kotlin-App/App-Code/.env
+
+# Kotlin Android app build outputs (local-only)
+Kotlin-App/App-Code/.gradle/
+Kotlin-App/App-Code/**/build/
+Kotlin-App/App-Code/local.properties
+Kotlin-App/App-Code/.idea/
