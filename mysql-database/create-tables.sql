@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `BoardGameTracker`.`user` (
   `avatar_url` VARCHAR(255) NULL,
   `designer` TINYINT NOT NULL DEFAULT 0,
   `default_session_visibility` VARCHAR(45) NOT NULL DEFAULT 'public',
+  `time_zone` VARCHAR(64) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `user_id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,

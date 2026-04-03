@@ -4,6 +4,7 @@ plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose")
+  id("com.google.devtools.ksp")
 }
 
 fun loadEnvFile(file: File): Map<String, String> {
@@ -97,7 +98,9 @@ dependencies {
   implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
   implementation("com.squareup.okhttp3:okhttp:4.12.0")
   implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+  implementation("com.squareup.moshi:moshi:1.15.2")
   implementation("com.squareup.moshi:moshi-kotlin:1.15.2")
+  ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.2")
 
   implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
   implementation("com.google.android.material:material:1.12.0")

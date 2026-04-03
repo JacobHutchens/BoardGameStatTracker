@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jacob_hutchens.boardgmestattracker.ui.auth.AuthViewModel
+import com.jacob_hutchens.boardgmestattracker.ui.auth.passwordValidationError
 
 @Composable
 fun LoginScreen(
@@ -95,6 +96,8 @@ fun RegisterScreen(
   var email by remember { mutableStateOf("") }
   var password by remember { mutableStateOf("") }
 
+  val passwordError = passwordValidationError(password)
+
   LaunchedEffect(uiState.authenticated) {
     if (uiState.authenticated) {
       viewModel.resetTransientState()
@@ -135,9 +138,13 @@ fun RegisterScreen(
       Text(it, color = MaterialTheme.colorScheme.error)
       Spacer(Modifier.height(8.dp))
     }
+    if (uiState.error == null && password.isNotBlank() && passwordError != null) {
+      Text(passwordError, color = MaterialTheme.colorScheme.error)
+      Spacer(Modifier.height(8.dp))
+    }
     Button(
       modifier = Modifier.fillMaxWidth(),
-      enabled = !uiState.loading && username.isNotBlank() && email.isNotBlank() && password.isNotBlank(),
+      enabled = !uiState.loading && username.isNotBlank() && email.isNotBlank() && password.isNotBlank() && passwordError == null,
       onClick = { viewModel.register(username.trim(), email.trim(), password) },
     ) {
       if (uiState.loading) {

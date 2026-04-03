@@ -1,12 +1,14 @@
 # The Librarian — Board Game Stat Tracker REST API
 # Python 3.12+
+# Exact pins (resolved together); reinstall with: pip install -r requirements.txt
 
-fastapi>=0.100.0
-uvicorn[standard]>=0.20.0
-pydantic>=2.0.0
-python-dotenv>=1.0.0
-sqlmodel>=0.0.14
-aiomysql>=0.2.0
-argon2-cffi>=23.1.0
-PyJWT>=2.8.0
-httpx>=0.27.0
+fastapi==0.135.3
+uvicorn[standard]==0.42.0
+pydantic==2.12.5
+python-dotenv==1.2.2
+sqlmodel==0.0.38
+SQLAlchemy==2.0.48
+aiomysql==0.3.2
+argon2-cffi==25.1.0
+PyJWT==2.12.1
+httpx==0.28.1

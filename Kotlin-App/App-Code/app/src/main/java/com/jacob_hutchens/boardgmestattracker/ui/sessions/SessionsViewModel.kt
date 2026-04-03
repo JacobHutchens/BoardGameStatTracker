@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jacob_hutchens.boardgmestattracker.data.network.model.SessionDto
 import com.jacob_hutchens.boardgmestattracker.data.repository.RestRepository
+import com.jacob_hutchens.boardgmestattracker.ui.network.toUserFacingNetworkMessageOrNull
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -42,7 +43,8 @@ class SessionsViewModel(
       }.onSuccess {
         _uiState.value = it
       }.onFailure { err ->
-        _uiState.value = _uiState.value.copy(loading = false, error = err.message ?: "Unable to load sessions")
+        val msg = err.toUserFacingNetworkMessageOrNull() ?: err.message ?: "Unable to load sessions"
+        _uiState.value = _uiState.value.copy(loading = false, error = msg)
       }
     }
   }
@@ -56,7 +58,8 @@ class SessionsViewModel(
         _uiState.value = _uiState.value.copy(loading = false)
         onSuccess(session.id)
       }.onFailure { err ->
-        _uiState.value = _uiState.value.copy(loading = false, error = err.message ?: "Join failed")
+        val msg = err.toUserFacingNetworkMessageOrNull() ?: err.message ?: "Join failed"
+        _uiState.value = _uiState.value.copy(loading = false, error = msg)
       }
     }
   }

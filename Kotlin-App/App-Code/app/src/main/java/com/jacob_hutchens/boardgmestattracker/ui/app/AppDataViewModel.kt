@@ -8,6 +8,7 @@ import com.jacob_hutchens.boardgmestattracker.data.network.model.SessionDto
 import com.jacob_hutchens.boardgmestattracker.data.network.model.UpdateUserMeRequest
 import com.jacob_hutchens.boardgmestattracker.data.network.model.UserMe
 import com.jacob_hutchens.boardgmestattracker.data.repository.RestRepository
+import com.jacob_hutchens.boardgmestattracker.ui.network.toUserFacingNetworkMessageOrNull
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -39,7 +40,10 @@ class AppDataViewModel(
         val active = repository.getSessions(active = true, from = null, to = null, gameId = null, page = 1, limit = 20)
         _uiState.value.copy(loading = false, me = me, activeSessions = active.sessions)
       }.onSuccess { _uiState.value = it }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to load home") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to load home"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -48,7 +52,10 @@ class AppDataViewModel(
       _uiState.value = _uiState.value.copy(loading = true, error = null)
       runCatching { repository.getGames(filter = "all", search = search, page = 1, limit = 100) }
         .onSuccess { _uiState.value = _uiState.value.copy(loading = false, games = it.games) }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to load games") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to load games"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -57,7 +64,10 @@ class AppDataViewModel(
       _uiState.value = _uiState.value.copy(loading = true, error = null)
       runCatching { repository.getFeed(page = 1, limit = 50, since = null) }
         .onSuccess { _uiState.value = _uiState.value.copy(loading = false, feedSessions = it.sessions) }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to load feed") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to load feed"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -66,7 +76,10 @@ class AppDataViewModel(
       _uiState.value = _uiState.value.copy(loading = true, error = null)
       runCatching { repository.getUserMe() }
         .onSuccess { _uiState.value = _uiState.value.copy(loading = false, me = it) }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to load profile") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to load profile"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -76,7 +89,10 @@ class AppDataViewModel(
       runCatching {
         repository.updateUserMe(UpdateUserMeRequest(username = username, bio = bio))
       }.onSuccess { _uiState.value = _uiState.value.copy(loading = false, me = it) }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to update profile") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to update profile"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -88,7 +104,10 @@ class AppDataViewModel(
         val history = repository.getSessions(active = false, from = null, to = null, gameId = null, page = 1, limit = 100)
         _uiState.value.copy(loading = false, myStats = stats, historySessions = history.sessions)
       }.onSuccess { _uiState.value = it }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to load stats") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to load stats"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -97,7 +116,10 @@ class AppDataViewModel(
       _uiState.value = _uiState.value.copy(loading = true, error = null)
       runCatching { repository.getSessions(active = false, from = null, to = null, gameId = null, page = 1, limit = 100) }
         .onSuccess { _uiState.value = _uiState.value.copy(loading = false, historySessions = it.sessions) }
-        .onFailure { _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to load history") }
+        .onFailure {
+          val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to load history"
+          _uiState.value = _uiState.value.copy(loading = false, error = msg)
+        }
     }
   }
 
@@ -117,7 +139,8 @@ class AppDataViewModel(
         val text = "Sessions: ${it.sessionCount ?: 0}, Values: ${it.statValueCount ?: 0}, Estimated bytes: ${it.estimatedSizeBytes ?: 0}"
         _uiState.value = _uiState.value.copy(loading = false, exportPreview = text)
       }.onFailure {
-        _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to preview export")
+        val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to preview export"
+        _uiState.value = _uiState.value.copy(loading = false, error = msg)
       }
     }
   }
@@ -138,7 +161,8 @@ class AppDataViewModel(
         _uiState.value = _uiState.value.copy(loading = false)
         onCreated(it.sessionId)
       }.onFailure {
-        _uiState.value = _uiState.value.copy(loading = false, error = it.message ?: "Failed to create session")
+        val msg = it.toUserFacingNetworkMessageOrNull() ?: it.message ?: "Failed to create session"
+        _uiState.value = _uiState.value.copy(loading = false, error = msg)
       }
     }
   }

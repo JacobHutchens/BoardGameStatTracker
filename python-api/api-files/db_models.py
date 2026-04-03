@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from sqlmodel import Field, Relationship, SQLModel
 
@@ -27,19 +25,19 @@ class User(SQLModel, table=True):
     time_zone: Optional[str] = Field(default=None, max_length=64)
 
     # Relationships
-    games_stat_sets: List["GameTrackedStatSet"] = Relationship(back_populates="user")
-    sessions_created: List["Session"] = Relationship(back_populates="creator_user")
-    session_players: List["SessionPlayer"] = Relationship(back_populates="user")
-    session_invites: List["SessionInvite"] = Relationship(back_populates="user")
-    user_game_stats: List["UserGameStatsCache"] = Relationship(back_populates="user")
-    followers: List["Follower"] = Relationship(
+    games_stat_sets: list["GameTrackedStatSet"] = Relationship(back_populates="user")
+    sessions_created: list["Session"] = Relationship(back_populates="creator_user")
+    session_players: list["SessionPlayer"] = Relationship(back_populates="user")
+    session_invites: list["SessionInvite"] = Relationship(back_populates="user")
+    user_game_stats: list["UserGameStatsCache"] = Relationship(back_populates="user")
+    followers: list["Follower"] = Relationship(
         back_populates="user", sa_relationship_kwargs={"foreign_keys": "[Follower.user_id]"}
     )
-    following: List["Follower"] = Relationship(
+    following: list["Follower"] = Relationship(
         back_populates="following_user", sa_relationship_kwargs={"foreign_keys": "[Follower.following_user_id]"}
     )
-    refresh_tokens: List["UserRefreshToken"] = Relationship(back_populates="user")
-    publisher_links: List["PublisherDesigner"] = Relationship(back_populates="user")
+    refresh_tokens: list["UserRefreshToken"] = Relationship(back_populates="user")
+    publisher_links: list["PublisherDesigner"] = Relationship(back_populates="user")
 
 
 class UserRefreshToken(SQLModel, table=True):
@@ -64,8 +62,8 @@ class Publisher(SQLModel, table=True):
     password_hash: str = Field(max_length=255)
     created_at: datetime
 
-    refresh_tokens: List["PublisherRefreshToken"] = Relationship(back_populates="publisher")
-    designers: List["PublisherDesigner"] = Relationship(back_populates="publisher")
+    refresh_tokens: list["PublisherRefreshToken"] = Relationship(back_populates="publisher")
+    designers: list["PublisherDesigner"] = Relationship(back_populates="publisher")
 
 
 class PublisherRefreshToken(SQLModel, table=True):
@@ -104,8 +102,8 @@ class Scope(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     scope: str = Field(max_length=45, index=True)
 
-    game_tracked_stats: List["GameTrackedStat"] = Relationship(back_populates="scope")
-    session_tracked_stats: List["SessionTrackedStat"] = Relationship(back_populates="scope")
+    game_tracked_stats: list["GameTrackedStat"] = Relationship(back_populates="scope")
+    session_tracked_stats: list["SessionTrackedStat"] = Relationship(back_populates="scope")
 
 
 class DataType(SQLModel, table=True):
@@ -114,8 +112,8 @@ class DataType(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     data_type: Optional[str] = Field(default=None, max_length=45)
 
-    game_tracked_stats: List["GameTrackedStat"] = Relationship(back_populates="data_type")
-    session_tracked_stats: List["SessionTrackedStat"] = Relationship(back_populates="data_type")
+    game_tracked_stats: list["GameTrackedStat"] = Relationship(back_populates="data_type")
+    session_tracked_stats: list["SessionTrackedStat"] = Relationship(back_populates="data_type")
 
 
 # ---------------------------------------------------------------------------
@@ -134,9 +132,9 @@ class Game(SQLModel, table=True):
     can_win: bool = Field(default=True)
     created_at: datetime
 
-    stat_sets: List["GameTrackedStatSet"] = Relationship(back_populates="game")
-    sessions: List["Session"] = Relationship(back_populates="game")
-    user_game_stats: List["UserGameStatsCache"] = Relationship(back_populates="game")
+    stat_sets: list["GameTrackedStatSet"] = Relationship(back_populates="game")
+    sessions: list["Session"] = Relationship(back_populates="game")
+    user_game_stats: list["UserGameStatsCache"] = Relationship(back_populates="game")
 
 
 class GameTrackedStatSet(SQLModel, table=True):
@@ -149,8 +147,8 @@ class GameTrackedStatSet(SQLModel, table=True):
 
     game: Optional[Game] = Relationship(back_populates="stat_sets")
     user: Optional[User] = Relationship(back_populates="games_stat_sets")
-    stats: List["GameTrackedStat"] = Relationship(back_populates="stat_set")
-    sessions: List["Session"] = Relationship(back_populates="stat_set")
+    stats: list["GameTrackedStat"] = Relationship(back_populates="stat_set")
+    sessions: list["Session"] = Relationship(back_populates="stat_set")
 
 
 class GameTrackedStat(SQLModel, table=True):
@@ -189,10 +187,10 @@ class Session(SQLModel, table=True):
     creator_user: Optional[User] = Relationship(back_populates="sessions_created")
     game: Optional[Game] = Relationship(back_populates="sessions")
     stat_set: Optional[GameTrackedStatSet] = Relationship(back_populates="sessions")
-    players: List["SessionPlayer"] = Relationship(back_populates="session")
-    invites: List["SessionInvite"] = Relationship(back_populates="session")
-    tracked_stats: List["SessionTrackedStat"] = Relationship(back_populates="session")
-    table_stat_values: List["TableStatValue"] = Relationship(back_populates="session")
+    players: list["SessionPlayer"] = Relationship(back_populates="session")
+    invites: list["SessionInvite"] = Relationship(back_populates="session")
+    tracked_stats: list["SessionTrackedStat"] = Relationship(back_populates="session")
+    table_stat_values: list["TableStatValue"] = Relationship(back_populates="session")
 
 
 class SessionPlayer(SQLModel, table=True):
@@ -206,7 +204,7 @@ class SessionPlayer(SQLModel, table=True):
 
     session: Optional[Session] = Relationship(back_populates="players")
     user: Optional[User] = Relationship(back_populates="session_players")
-    player_stat_values: List["PlayerStatValue"] = Relationship(back_populates="session_player")
+    player_stat_values: list["PlayerStatValue"] = Relationship(back_populates="session_player")
 
 
 class SessionInvite(SQLModel, table=True):
@@ -233,8 +231,8 @@ class SessionTrackedStat(SQLModel, table=True):
     session: Optional[Session] = Relationship(back_populates="tracked_stats")
     data_type: Optional[DataType] = Relationship(back_populates="session_tracked_stats")
     scope: Optional[Scope] = Relationship(back_populates="session_tracked_stats")
-    player_stat_values: List["PlayerStatValue"] = Relationship(back_populates="session_tracked_stat")
-    table_stat_values: List["TableStatValue"] = Relationship(back_populates="session_tracked_stat")
+    player_stat_values: list["PlayerStatValue"] = Relationship(back_populates="session_tracked_stat")
+    table_stat_values: list["TableStatValue"] = Relationship(back_populates="session_tracked_stat")
 
 
 class PlayerStatValue(SQLModel, table=True):

@@ -2,6 +2,8 @@ package com.jacob_hutchens.boardgmestattracker.data.network
 
 import com.jacob_hutchens.boardgmestattracker.data.local.TokenStore
 import com.jacob_hutchens.boardgmestattracker.data.network.model.RefreshRequest
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.Request
@@ -31,7 +33,13 @@ class TokenAuthenticator(
 
       val refreshApi = Retrofit.Builder()
         .baseUrl(BaseUrl.restApi())
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(
+          MoshiConverterFactory.create(
+            Moshi.Builder()
+              .addLast(KotlinJsonAdapterFactory())
+              .build()
+          )
+        )
         .build()
         .create(BoardGameApi::class.java)
 

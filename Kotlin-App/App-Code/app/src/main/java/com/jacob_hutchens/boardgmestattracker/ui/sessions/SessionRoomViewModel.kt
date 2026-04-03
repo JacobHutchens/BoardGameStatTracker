@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jacob_hutchens.boardgmestattracker.data.network.model.SessionDto
 import com.jacob_hutchens.boardgmestattracker.data.repository.RestRepository
+import com.jacob_hutchens.boardgmestattracker.ui.network.toUserFacingNetworkMessageOrNull
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,7 +30,8 @@ class SessionRoomViewModel(
       }.onSuccess { session ->
         _uiState.value = SessionRoomUiState(session = session)
       }.onFailure { err ->
-        _uiState.value = SessionRoomUiState(error = err.message ?: "Unable to load session")
+        val msg = err.toUserFacingNetworkMessageOrNull() ?: err.message ?: "Unable to load session"
+        _uiState.value = SessionRoomUiState(error = msg)
       }
     }
   }

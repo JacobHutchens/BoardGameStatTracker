@@ -3,6 +3,7 @@ package com.jacob_hutchens.boardgmestattracker.data.network
 import android.content.Context
 import com.jacob_hutchens.boardgmestattracker.data.local.TokenStore
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -43,7 +44,9 @@ object NetworkModule {
       .addInterceptor(logging)
       .build()
 
-    val moshi = Moshi.Builder().build()
+    val moshi = Moshi.Builder()
+      .addLast(KotlinJsonAdapterFactory())
+      .build()
 
     return Retrofit.Builder()
       .baseUrl(BaseUrl.restApi())
